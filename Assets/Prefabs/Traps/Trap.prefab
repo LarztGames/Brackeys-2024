@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5318913737110555590}
   - component: {fileID: 3561030751178278884}
   - component: {fileID: 1421555889468403078}
+  - component: {fileID: 3205301260379236748}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Untagged
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3205301260379236748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300724025842093678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cbe6f572dca2e418d65042ba00b2ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
