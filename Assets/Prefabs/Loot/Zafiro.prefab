@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zafiro
       objectReference: {fileID: 0}
+    - target: {fileID: 5166264545060556346, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
+      propertyPath: loot
+      value: 
+      objectReference: {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

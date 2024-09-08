@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea5168a14b75e448aca54a5d8ce4c60, type: 3}
   m_Name: Zafiro
   m_EditorClassIdentifier: 
-  loot: {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
+  gameObject: {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
   sprite: {fileID: 0}
   weight: 2

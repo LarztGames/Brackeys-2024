@@ -1200,7 +1200,7 @@ GameObject:
   - component: {fileID: 1651190643}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f38bcba9d4c4e42a32c24bef98ed2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 10
+  capacity: 5
   loots: []
 --- !u!114 &1651190644
 MonoBehaviour:
@@ -1333,9 +1333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ee4275bfd4daa4291eddda40f21230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  minSpeed: 5
   cameraController: {fileID: 519420033}
   roomTransitionTime: 0.5
-  speed: 10
 --- !u!114 &1651190645
 MonoBehaviour:
   m_ObjectHideFlags: 0

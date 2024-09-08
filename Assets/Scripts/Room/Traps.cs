@@ -7,13 +7,13 @@ namespace Dungeon
     [CreateAssetMenu(fileName = "Trap", menuName = "Room/Trap", order = 0)]
     public class Traps : ScriptableObject
     {
-        public GameObject trap;
+        public GameObject gameObject;
         public Sprite sprite;
 
         private void OnValidate()
         {
             // Validar que el objeto `loot` no esté vacío
-            if (trap == null)
+            if (gameObject == null)
             {
                 Debug.LogWarning($"El campo 'loot' está vacío en el ScriptableObject '{name}'");
             }
@@ -25,7 +25,7 @@ namespace Dungeon
             }
             else
             {
-                trap.GetComponent<SpriteRenderer>().sprite = sprite;
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
             }
         }
     }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36549fb4a4d21e24cb13607d70f0c3c3, type: 3}
   m_Name: Spikes
   m_EditorClassIdentifier: 
-  trap: {fileID: 7259447834950828929, guid: fd296ec407e90d24f900544220baf9d0, type: 3}
+  gameObject: {fileID: 7259447834950828929, guid: fd296ec407e90d24f900544220baf9d0, type: 3}
   sprite: {fileID: 0}

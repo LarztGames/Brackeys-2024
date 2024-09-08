@@ -7,14 +7,14 @@ namespace Dungeon
     [CreateAssetMenu(fileName = "Loot", menuName = "Room/Loot", order = 0)]
     public class Loot : ScriptableObject
     {
-        public GameObject loot;
+        public GameObject gameObject;
         public Sprite sprite;
         public int weight;
 
         private void OnValidate()
         {
             // Validar que el objeto `loot` no esté vacío
-            if (loot == null)
+            if (gameObject == null)
             {
                 Debug.LogWarning($"El campo 'loot' está vacío en el ScriptableObject '{name}'");
             }
@@ -26,7 +26,7 @@ namespace Dungeon
             }
             else
             {
-                loot.GetComponent<SpriteRenderer>().sprite = sprite;
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
             }
 
             // Validar que el peso sea positivo

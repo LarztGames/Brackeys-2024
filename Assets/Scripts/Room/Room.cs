@@ -30,14 +30,15 @@ namespace Dungeon
             int lootToSpawn = UnityEngine.Random.Range(1, lootSpawnPoints.Count);
             for (int i = 0; i < lootToSpawn; i++)
             {
-                int randomPosition = UnityEngine.Random.Range(0, lootSpawnPoints.Count);
                 int randomLoot = UnityEngine.Random.Range(0, loots.Count);
+                int randomPosition = UnityEngine.Random.Range(0, lootSpawnPoints.Count);
                 GameObject loot = Instantiate(
-                    loots[randomLoot].loot,
+                    loots[randomLoot].gameObject,
                     lootSpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );
                 loot.transform.parent = transform;
+                lootSpawnPoints.Remove(lootSpawnPoints[randomPosition]);
             }
         }
 
@@ -46,14 +47,15 @@ namespace Dungeon
             int trapToSpawn = UnityEngine.Random.Range(1, trapSpawnPoints.Count);
             for (int i = 0; i < trapToSpawn; i++)
             {
-                int randomPosition = UnityEngine.Random.Range(0, trapSpawnPoints.Count);
                 int randomTrap = UnityEngine.Random.Range(0, traps.Count);
+                int randomPosition = UnityEngine.Random.Range(0, trapSpawnPoints.Count);
                 GameObject trap = Instantiate(
-                    traps[randomTrap].trap,
+                    traps[randomTrap].gameObject,
                     trapSpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );
                 trap.transform.parent = transform;
+                trapSpawnPoints.Remove(trapSpawnPoints[randomPosition]);
             }
         }
     }

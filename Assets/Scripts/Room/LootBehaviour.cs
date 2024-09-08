@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class LootBehaviour : MonoBehaviour
+namespace Dungeon
 {
-    void Start() {
-      
-    }
+    public class LootBehaviour : Interactable
+    {
+        [SerializeField]
+        private Loot loot;
 
-    void Update() {
-      
+        protected override void Behaviour(GameObject player)
+        {
+            player.GetComponent<Pocket>().TryAddLoot(gameObject, loot);
+        }
     }
 }

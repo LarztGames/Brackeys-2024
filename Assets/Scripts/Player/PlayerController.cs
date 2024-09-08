@@ -12,7 +12,12 @@ namespace Player
         [Header("Movement")]
         [SerializeField]
         private float speed;
+
+        [SerializeField]
+        private float minSpeed;
+
         private Rigidbody2D _rb;
+        private Pocket _pocket;
         #endregion
 
         #region Room
@@ -22,6 +27,7 @@ namespace Player
 
         [SerializeField]
         private float roomTransitionTime;
+
         private float _roomTransitionTimer;
         private bool _onRoomTransition;
         private Room _room;
@@ -31,33 +37,39 @@ namespace Player
         {
             _onRoomTransition = false;
             _rb = GetComponent<Rigidbody2D>();
+            _pocket = GetComponent<Pocket>();
         }
 
         void Update()
         {
-            if (!_onRoomTransition)
-            {
-                _roomTransitionTimer = 0;
-                Movement();
-            }
-            else
-            {
-                _rb.velocity = Vector3.zero;
-                _roomTransitionTimer += Time.deltaTime;
-                if (_roomTransitionTimer >= roomTransitionTime)
-                {
-                    _onRoomTransition = false;
-                }
-            }
+            Movement();
+            TryRoomTransition();
         }
 
         private void Movement()
         {
             float horizontal = InputHandler.instance.GetHorizontalRaw();
             float vertical = InputHandler.instance.GetVerticalRaw();
-            _rb.velocity = new Vector2(horizontal, vertical).normalized * speed;
+            float modifiedSpeed = Mathf.Max(speed * _pocket.GetCapacityDiference(), minSpeed);
+            _rb.velocity = new Vector2(horizontal, vertical).normalized * modifiedSpeed;
         }
 
+        private void TryRoomTransition()
+        {
+            if (!_onRoomTransition)
+            {
+                _roomTransitionTimer = 0;
+                return;
+            }
+            _rb.velocity = Vector3.zero;
+            _roomTransitionTimer += Time.deltaTime;
+            if (_roomTransitionTimer >= roomTransitionTime)
+            {
+                _onRoomTransition = false;
+            }
+        }
+
+        // Comprueba cuando se entra en una habitacion
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponent<Room>() is Room room)
