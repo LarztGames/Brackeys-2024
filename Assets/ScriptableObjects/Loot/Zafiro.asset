@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea5168a14b75e448aca54a5d8ce4c60, type: 3}
+  m_Name: Zafiro
+  m_EditorClassIdentifier: 
+  loot: {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
+  sprite: {fileID: 0}
+  weight: 2

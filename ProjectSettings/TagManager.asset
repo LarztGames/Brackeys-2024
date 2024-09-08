@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Basement
+    uniqueID: 3058605483
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
