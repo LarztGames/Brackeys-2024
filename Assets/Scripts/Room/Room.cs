@@ -19,8 +19,20 @@ namespace Dungeon
         [SerializeField]
         private List<Transform> trapSpawnPoints = new List<Transform>();
 
+        private List<GameObject> roomObjects = new List<GameObject>();
+
         void Start()
         {
+            GenerateLoot();
+            GenerateTraps();
+        }
+
+        public void ReloadRoom()
+        {
+            foreach (GameObject item in roomObjects)
+            {
+                Destroy(item);
+            }
             GenerateLoot();
             GenerateTraps();
         }
@@ -39,6 +51,7 @@ namespace Dungeon
                 );
                 loot.transform.parent = transform;
                 resourceSpawnPoints.Remove(resourceSpawnPoints[randomPosition]);
+                roomObjects.Add(loot);
             }
         }
 
@@ -56,6 +69,7 @@ namespace Dungeon
                 );
                 trap.transform.parent = transform;
                 trapSpawnPoints.Remove(trapSpawnPoints[randomPosition]);
+                roomObjects.Add(trap);
             }
         }
     }

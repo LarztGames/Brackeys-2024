@@ -9,9 +9,6 @@ namespace Traps
     [CreateAssetMenu(menuName = "Traps/Trap", fileName = "SOTraps", order = 0)]
     public class SOTraps : ScriptableObject
     {
-        [Header("Trap Values")]
-        public float knockForce;
-
         [Header("Damage Effects")]
         public Color damageColor;
         public float damageFlashTime;

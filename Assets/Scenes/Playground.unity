@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 32984220}
+  - component: {fileID: 32984221}
   m_Layer: 0
   m_Name: Laboratory
   m_TagString: Untagged
@@ -157,6 +158,19 @@ Transform:
   - {fileID: 1303625436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &32984221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32984219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a269c14fd76c434695ad7f6cccf6169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms: []
 --- !u!1001 &247585829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1168,11 +1182,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionTime: 40
+  player: {fileID: 1651190639}
+  baseRoom: {fileID: 957375399}
 --- !u!4 &808120410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122147875930143988, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
   m_PrefabInstance: {fileID: 6787662748897716580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &957375399 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1557079241144200394, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
+  m_PrefabInstance: {fileID: 6787662748897716580}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984caf7432482a348bf47dda4c0c5d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1303625436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122147875930143988, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
@@ -1336,7 +1363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  knockbackForce: 10
   minSpeed: 5
   cameraController: {fileID: 519420033}
   roomTransitionTime: 0.5
@@ -1378,7 +1404,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1651190647
 MonoBehaviour:
   m_ObjectHideFlags: 0
