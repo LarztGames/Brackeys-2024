@@ -25,7 +25,11 @@ namespace Collect
 
         private void OnValidate()
         {
-            if (_collectable.sprite != null && _collectable != null)
+            if (_collectable == null)
+            {
+                return;
+            }
+            if (_collectable.sprite != null)
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
                 GetComponent<SpriteRenderer>().sprite = _collectable.sprite;
