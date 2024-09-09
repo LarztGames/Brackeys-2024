@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ea5168a14b75e448aca54a5d8ce4c60, type: 3}
+  m_Script: {fileID: 11500000, guid: e33063419713f964ea44a58efb7205a8, type: 3}
   m_Name: Ruby
   m_EditorClassIdentifier: 
   gameObject: {fileID: 6957929494581159763, guid: 03b4741e57e4e6b4e83365022632bac1, type: 3}
   sprite: {fileID: 0}
   weight: 5
+  collectColor: {r: 1, g: 0.11461385, b: 0, a: 1}
+  collectFlashTime: 0.5

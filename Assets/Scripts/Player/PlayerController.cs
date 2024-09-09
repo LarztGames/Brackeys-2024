@@ -14,6 +14,9 @@ namespace Player
         private float speed;
 
         [SerializeField]
+        private float knockbackForce;
+
+        [SerializeField]
         private float minSpeed;
 
         private Rigidbody2D _rb;
@@ -43,7 +46,7 @@ namespace Player
         void Update()
         {
             Movement();
-            TryRoomTransition();
+            HasRoomTransition();
         }
 
         private void Movement()
@@ -54,7 +57,7 @@ namespace Player
             _rb.velocity = new Vector2(horizontal, vertical).normalized * modifiedSpeed;
         }
 
-        private void TryRoomTransition()
+        private void HasRoomTransition()
         {
             if (!_onRoomTransition)
             {

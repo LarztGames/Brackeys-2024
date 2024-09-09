@@ -80,6 +80,14 @@ PrefabInstance:
       propertyPath: loot
       value: 
       objectReference: {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
+    - target: {fileID: 5921017488589818107, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
+      propertyPath: _collectable
+      value: 
+      objectReference: {fileID: 11400000, guid: ea75dc5351e8dac4e914b488eff0b9c6, type: 2}
+    - target: {fileID: 5921017488589818107, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
+      propertyPath: _interactable
+      value: 
+      objectReference: {fileID: 11400000, guid: ea75dc5351e8dac4e914b488eff0b9c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

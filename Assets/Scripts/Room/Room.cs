@@ -8,13 +8,13 @@ namespace Dungeon
     public class Room : MonoBehaviour
     {
         [SerializeField]
-        private List<Loot> loots = new List<Loot>();
+        private List<GameObject> resources = new List<GameObject>();
 
         [SerializeField]
-        private List<Transform> lootSpawnPoints = new List<Transform>();
+        private List<Transform> resourceSpawnPoints = new List<Transform>();
 
         [SerializeField]
-        private List<Traps> traps = new List<Traps>();
+        private List<GameObject> traps = new List<GameObject>();
 
         [SerializeField]
         private List<Transform> trapSpawnPoints = new List<Transform>();
@@ -27,18 +27,18 @@ namespace Dungeon
 
         private void GenerateLoot()
         {
-            int lootToSpawn = UnityEngine.Random.Range(1, lootSpawnPoints.Count);
+            int lootToSpawn = UnityEngine.Random.Range(1, resourceSpawnPoints.Count);
             for (int i = 0; i < lootToSpawn; i++)
             {
-                int randomLoot = UnityEngine.Random.Range(0, loots.Count);
-                int randomPosition = UnityEngine.Random.Range(0, lootSpawnPoints.Count);
+                int randomLoot = UnityEngine.Random.Range(0, resources.Count);
+                int randomPosition = UnityEngine.Random.Range(0, resourceSpawnPoints.Count);
                 GameObject loot = Instantiate(
-                    loots[randomLoot].gameObject,
-                    lootSpawnPoints[randomPosition].position,
+                    resources[randomLoot],
+                    resourceSpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );
                 loot.transform.parent = transform;
-                lootSpawnPoints.Remove(lootSpawnPoints[randomPosition]);
+                resourceSpawnPoints.Remove(resourceSpawnPoints[randomPosition]);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Dungeon
                 int randomTrap = UnityEngine.Random.Range(0, traps.Count);
                 int randomPosition = UnityEngine.Random.Range(0, trapSpawnPoints.Count);
                 GameObject trap = Instantiate(
-                    traps[randomTrap].gameObject,
+                    traps[randomTrap],
                     trapSpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );

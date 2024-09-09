@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36549fb4a4d21e24cb13607d70f0c3c3, type: 3}
-  m_Name: Spikes
+  m_Script: {fileID: 11500000, guid: 8ceca98e521c1f94494d008e868e4bbd, type: 3}
+  m_Name: Spike
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 7259447834950828929, guid: fd296ec407e90d24f900544220baf9d0, type: 3}
-  sprite: {fileID: 0}
+  knockForce: 3
+  damageColor: {r: 1, g: 1, b: 1, a: 0}
+  damageFlashTime: 0.1

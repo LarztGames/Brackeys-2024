@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300724025842093678, guid: 95f38558d0612074d8c809baba415c52, type: 3}
       propertyPath: m_Name
-      value: Spike Variant
+      value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 5318913737110555590, guid: 95f38558d0612074d8c809baba415c52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7393309160668145831, guid: 95f38558d0612074d8c809baba415c52, type: 3}
+      propertyPath: _traps
+      value: 
+      objectReference: {fileID: 11400000, guid: 9787f36997783174982d5c40d8276df8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

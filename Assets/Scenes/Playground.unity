@@ -1198,6 +1198,8 @@ GameObject:
   - component: {fileID: 1651190645}
   - component: {fileID: 1651190644}
   - component: {fileID: 1651190643}
+  - component: {fileID: 1651190647}
+  - component: {fileID: 1651190648}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1245,7 +1247,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1319,8 +1321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f38bcba9d4c4e42a32c24bef98ed2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 5
-  loots: []
+  capacity: 10
+  resources: []
 --- !u!114 &1651190644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,6 +1336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  knockbackForce: 10
   minSpeed: 5
   cameraController: {fileID: 519420033}
   roomTransitionTime: 0.5
@@ -1376,6 +1379,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1651190647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651190639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2152ca17970a034a94eca44ca09d3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1651190648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651190639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4160e58e2e2dde4e908983ff24e3909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageGraceTime: 2
 --- !u!4 &1685490116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3122147875930143988, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
@@ -3246,6 +3274,10 @@ PrefabInstance:
     - target: {fileID: 6026553772570190696, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
       propertyPath: m_Name
       value: Room_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397993250323611100, guid: bb0af0f507b6cf14b823327ff90a784f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1046,18 +1046,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984caf7432482a348bf47dda4c0c5d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loots:
-  - {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
-  - {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
-  - {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
-  - {fileID: 11400000, guid: 88254312388dea841aa46244af9d4472, type: 2}
-  lootSpawnPoints:
+  resources:
+  - {fileID: 2954332779053594201, guid: 0af35bbc9b9fb9a40bfd3cd22cce807e, type: 3}
+  - {fileID: 6957929494581159763, guid: 03b4741e57e4e6b4e83365022632bac1, type: 3}
+  - {fileID: 6957929494581159763, guid: 03b4741e57e4e6b4e83365022632bac1, type: 3}
+  - {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
+  - {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
+  resourceSpawnPoints:
   - {fileID: 6030579398480119140}
   - {fileID: 5186298406347610642}
   - {fileID: 8539409345795178950}
   - {fileID: 4776180976844428597}
   traps:
-  - {fileID: 11400000, guid: b127e290220833f4ca295dae63dd6d6a, type: 2}
+  - {fileID: 7259447834950828929, guid: fd296ec407e90d24f900544220baf9d0, type: 3}
   trapSpawnPoints:
   - {fileID: 7991660387712072436}
   - {fileID: 6430858797962441992}
