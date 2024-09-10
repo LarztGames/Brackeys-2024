@@ -21,6 +21,10 @@ namespace Managers
         private Slider timerSlider;
         private RoundState state;
 
+        //FF2D2D
+        [SerializeField]
+        private Animator stormIconAnimator;
+
         [Header("Calm Time")]
         [SerializeField]
         private float calmTime;
@@ -57,7 +61,6 @@ namespace Managers
 
         void Update()
         {
-            Debug.Log(state);
             switch (state)
             {
                 case RoundState.Calm:
@@ -75,6 +78,7 @@ namespace Managers
         #region Calm
         private void CalmState()
         {
+            stormIconAnimator.SetFloat("calm", _currentCalmTimer);
             if (_currentCalmTimer > 0)
             {
                 _currentCalmTimer -= Time.deltaTime;
@@ -96,14 +100,14 @@ namespace Managers
         #region Storm
         private void StormState()
         {
-            Debug.Log(_currentStormTimer);
-            Debug.Log(stormTime);
+            stormIconAnimator.SetBool("storm", true);
             if (_currentStormTimer > 0)
             {
                 _currentStormTimer -= Time.deltaTime;
             }
             else
             {
+                stormIconAnimator.SetBool("storm", false);
                 state = RoundState.Transition;
                 timerSlider.maxValue = transitionTime;
                 timerSlider.value = 0;
@@ -114,6 +118,7 @@ namespace Managers
         #region Transition
         private void TransitionState()
         {
+            stormIconAnimator.SetBool("transition", true);
             if (_currentTransitionTimer < transitionTime)
             {
                 _currentTransitionTimer += Time.deltaTime;
@@ -127,6 +132,7 @@ namespace Managers
             {
                 // TODO: Comprobar que todos los enemigos han muerto
                 // Reset de los temporizadores
+                stormIconAnimator.SetBool("transition", false);
                 _currentCalmTimer = calmTime;
                 _currentStormTimer = stormTime;
                 _currentTransitionTimer = 0;

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Dungeon
 {
-    public class RoomHandler : MonoBehaviour
+    public class RoomManager : MonoBehaviour
     {
-        public static RoomHandler instance { get; set; }
+        public static RoomManager instance { get; set; }
 
         [SerializeField]
         private Room[] rooms;

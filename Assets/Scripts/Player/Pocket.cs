@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Collect;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
     public class Pocket : MonoBehaviour
     {
+        [SerializeField]
+        private Slider pocketSlider;
+
         [SerializeField]
         private float capacity;
         private float _currentCapacity;
@@ -17,11 +21,12 @@ namespace Player
         // [SerializeField]
         private int pocketMinRadius;
 
-        [SerializeField]
-        private List<SOCollectableResource> resources = new List<SOCollectableResource>();
+        private List<SOCollectableResource> _resources = new List<SOCollectableResource>();
 
         void Start()
         {
+            pocketSlider.maxValue = capacity;
+            pocketSlider.value = 0;
             _currentCapacity = capacity;
         }
 
@@ -35,22 +40,35 @@ namespace Player
                 Debug.Log("Pocket is full");
                 return false;
             }
-            resources.Add(collectableData);
+            _resources.Add(collectableData);
             _currentCapacity -= collectableData.weight;
+            pocketSlider.value += collectableData.weight;
             return true;
         }
 
         public bool TryRemoveLoot()
         {
-            if (resources.Count == 0)
+            if (_resources.Count == 0)
             {
                 Debug.Log("Pocket is empty");
                 return false;
             }
-            int index = Random.Range(0, resources.Count);
-            SOCollectableResource collectableData = resources[index];
-            resources.Remove(collectableData);
+            int index = Random.Range(0, _resources.Count);
+            SOCollectableResource collectableData = _resources[index];
+            _resources.Remove(collectableData);
             _currentCapacity += collectableData.weight;
+            return true;
+        }
+
+        public bool ClearPocket()
+        {
+            if (_resources.Count == 0)
+            {
+                Debug.Log("Pocket is empty");
+                return false;
+            }
+            _resources.Clear();
+            _currentCapacity = capacity;
             return true;
         }
 
@@ -63,10 +81,12 @@ namespace Player
             float x = Mathf.Cos(angle) * distance;
             float y = Mathf.Sin(angle) * distance;
             Vector2 position = new Vector2(x, y) + (Vector2)transform.position;
-            int index = Random.Range(0, resources.Count);
-            Instantiate(resources[index].gameObject, position, Quaternion.identity);
+            int index = Random.Range(0, _resources.Count);
+            Instantiate(_resources[index].gameObject, position, Quaternion.identity);
         }
 
         public float GetCapacityDiference() => _currentCapacity / capacity;
+
+        public List<SOCollectableResource> GetResources() => _resources;
     }
 }

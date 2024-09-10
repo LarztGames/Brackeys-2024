@@ -129,5 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b410a5833dc59e5439e9f25eb93f8b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  unPlacedColor: {r: 1, g: 1, b: 1, a: 0.50980395}
   weaponData: {fileID: 11400000, guid: fade60476f3cbe247bfd17fd95d561e2, type: 2}
   bulletSpawnPoint: {fileID: 6227862162813410915}

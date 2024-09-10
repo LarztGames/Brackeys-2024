@@ -35,6 +35,7 @@ namespace Player
 
         void Start()
         {
+            // Start position on load
             _onRoomTransition = false;
             _rb = GetComponent<Rigidbody2D>();
             _pocket = GetComponent<Pocket>();
@@ -81,6 +82,13 @@ namespace Player
                     cameraController.SetRoomPosition(_room.transform);
                     _onRoomTransition = true;
                 }
+            }
+
+            if (other.gameObject.GetComponent<BackToLaboratory>())
+            {
+                StorageManager.instance.AddLoot(_pocket.GetResources());
+                _pocket.ClearPocket();
+                transform.position = new Vector2(0, 3.4f);
             }
         }
     }

@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using Collect;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Canon,
+    MiniGun,
+    Acid,
+    AutoTarget,
+    Radiation,
+}
+
 [CreateAssetMenu(fileName = "Weapon", menuName = "Weapon", order = 0)]
 public class SOWeapon : ScriptableObject
 {
@@ -25,6 +34,7 @@ public class SOWeapon : ScriptableObject
     }
 
     [Header("Weapon Attributes")]
+    public WeaponType weaponType;
     public GameObject weaponPrefab;
     public Sprite[] weaponSpritePerLevel;
     public int weaponLevel;

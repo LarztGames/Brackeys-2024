@@ -5,7 +5,7 @@ using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Canon : MonoBehaviour
+public class Canon : Weapon
 {
     private RoundManager RoundManager;
 
@@ -19,10 +19,30 @@ public class Canon : MonoBehaviour
 
     void Start()
     {
+        _placed = false;
         RoundManager = RoundManager.instance;
     }
 
     void Update()
+    {
+        if (_placed)
+        {
+            Shooting();
+        }
+        else
+        {
+            if (transform.position.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            }
+        }
+    }
+
+    private void Shooting()
     {
         _fireRateTime += Time.deltaTime;
         if (RoundManager.GetRoundState() != RoundState.Calm && _fireRateTime > weaponData.fireRate)
