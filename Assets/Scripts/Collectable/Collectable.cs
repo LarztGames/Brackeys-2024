@@ -9,7 +9,7 @@ namespace Collect
     public class Collectable : MonoBehaviour
     {
         [SerializeField]
-        private SOCollectable _collectable;
+        private SOCollectableResource _collectable;
 
         void Reset()
         {
@@ -21,7 +21,7 @@ namespace Collect
             _collectable.Interact(this.gameObject, objectThatInteract);
         }
 
-        public SOCollectable GetCollectableData() => _collectable;
+        public SOCollectableResource GetCollectableData() => _collectable;
 
         private void OnValidate()
         {

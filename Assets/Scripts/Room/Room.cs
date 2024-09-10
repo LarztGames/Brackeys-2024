@@ -39,7 +39,7 @@ namespace Dungeon
 
         private void GenerateLoot()
         {
-            int lootToSpawn = UnityEngine.Random.Range(1, resourceSpawnPoints.Count);
+            int lootToSpawn = UnityEngine.Random.Range(1, resourceSpawnPoints.Count + 1);
             for (int i = 0; i < lootToSpawn; i++)
             {
                 int randomLoot = UnityEngine.Random.Range(0, resources.Count);
@@ -57,7 +57,7 @@ namespace Dungeon
 
         private void GenerateTraps()
         {
-            int trapToSpawn = UnityEngine.Random.Range(1, trapSpawnPoints.Count);
+            int trapToSpawn = UnityEngine.Random.Range(1, trapSpawnPoints.Count + 1);
             for (int i = 0; i < trapToSpawn; i++)
             {
                 int randomTrap = UnityEngine.Random.Range(0, traps.Count);

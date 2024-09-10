@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6549030600379013788
+--- !u!1001 &4965262878285187871
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 818275904572279672, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.6956361
       objectReference: {fileID: 0}
     - target: {fileID: 818275904572279672, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.745283
       objectReference: {fileID: 0}
     - target: {fileID: 818275904572279672, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.48865256
       objectReference: {fileID: 0}
     - target: {fileID: 818275904572279672, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167038120890453534, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167038120890453534, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_LocalPosition.z
@@ -74,16 +74,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210123082992991695, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: m_Name
-      value: Ruby
+      value: Silver
       objectReference: {fileID: 0}
+    - target: {fileID: 5166264545060556346, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
+      propertyPath: loot
+      value: 
+      objectReference: {fileID: 11400000, guid: 39a3dc7d527dbe9468843aef13517a50, type: 2}
     - target: {fileID: 5921017488589818107, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: _collectable
       value: 
-      objectReference: {fileID: 11400000, guid: 88254312388dea841aa46244af9d4472, type: 2}
+      objectReference: {fileID: 11400000, guid: ea75dc5351e8dac4e914b488eff0b9c6, type: 2}
     - target: {fileID: 5921017488589818107, guid: 6ef2556ad8186b94f9feb7d20c9c7665, type: 3}
       propertyPath: _interactable
       value: 
-      objectReference: {fileID: 11400000, guid: 88254312388dea841aa46244af9d4472, type: 2}
+      objectReference: {fileID: 11400000, guid: ea75dc5351e8dac4e914b488eff0b9c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

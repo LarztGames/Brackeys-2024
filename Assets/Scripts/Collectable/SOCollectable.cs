@@ -9,7 +9,6 @@ namespace Collect
         [Header("Collectable Values")]
         public GameObject gameObject;
         public Sprite sprite;
-        public float weight;
 
         [Header("Collection Effects")]
         public Color collectColor;

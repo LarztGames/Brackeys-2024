@@ -18,7 +18,7 @@ namespace Player
         private int pocketMinRadius;
 
         [SerializeField]
-        private List<SOCollectable> resources = new List<SOCollectable>();
+        private List<SOCollectableResource> resources = new List<SOCollectableResource>();
 
         void Start()
         {
@@ -28,8 +28,8 @@ namespace Player
         public bool TryAddResource(GameObject resource)
         {
             Collectable collectable = resource.GetComponent<Collectable>();
-            SOCollectable collectableData = collectable.GetCollectableData();
-            Debug.Log(collectableData.weight);
+            SOCollectableResource collectableData = collectable.GetCollectableData();
+            Debug.Log(collectableData);
             if (_currentCapacity == 0 || (_currentCapacity - collectableData.weight) < 0)
             {
                 Debug.Log("Pocket is full");
@@ -48,7 +48,7 @@ namespace Player
                 return false;
             }
             int index = Random.Range(0, resources.Count);
-            SOCollectable collectableData = resources[index];
+            SOCollectableResource collectableData = resources[index];
             resources.Remove(collectableData);
             _currentCapacity += collectableData.weight;
             return true;

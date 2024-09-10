@@ -11,10 +11,10 @@ public class BuildController : MonoBehaviour
     [SerializeField]
     private GameObject pointsHolder;
 
-    public void SetWeapon(GameObject weapon)
+    public void SetWeapon(SOWeapon weapon)
     {
         pointsHolder.SetActive(true);
-        _currentWeapon = weapon;
+        _currentWeapon = weapon.weaponPrefab;
     }
 
     void Update()

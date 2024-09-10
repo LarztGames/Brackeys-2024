@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e33063419713f964ea44a58efb7205a8, type: 3}
-  m_Name: Ruby
+  m_Name: Silver
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 6957929494581159763, guid: 03b4741e57e4e6b4e83365022632bac1, type: 3}
+  gameObject: {fileID: 9116821545881663184, guid: 2ad508adad5efd1488ff1f0408d3256a, type: 3}
   sprite: {fileID: 0}
-  weight: 5
-  collectColor: {r: 1, g: 0.11461385, b: 0, a: 1}
+  collectColor: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 1}
   collectFlashTime: 0.5
+  weight: 1
+  amount: 5
+  lootType: 0
