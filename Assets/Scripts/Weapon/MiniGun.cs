@@ -1,30 +1,50 @@
-using Managers;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Canon : Weapon
+public class MiniGun : Weapon
 {
     [SerializeField]
     private Transform bulletSpawnPoint;
+
+    [SerializeField]
+    private Transform[] bulletSpawnPointDouble;
+
+    private int _index;
 
     void Start()
     {
         _fireRate = weaponData.fireRate;
         _bulletDamage = weaponData.bulletDamage;
 
+        _index = 0;
         _placed = false;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.color = unPlacedColor;
-        _fireRateTime = 0;
         weaponData.weaponLevel = 0;
     }
 
     protected override void Shoot()
     {
-        GameObject bulletInstance = Instantiate(
-            weaponData.bulletPrefab,
-            bulletSpawnPoint.position,
-            Quaternion.identity
-        );
+        Debug.Log(_level);
+        GameObject bulletInstance;
+        if (_level != 0)
+        {
+            bulletInstance = Instantiate(
+                weaponData.bulletPrefab,
+                bulletSpawnPointDouble[_index].position,
+                Quaternion.identity
+            );
+            _index = (_index == 1) ? 0 : 1;
+        }
+        else
+        {
+            bulletInstance = Instantiate(
+                weaponData.bulletPrefab,
+                bulletSpawnPoint.position,
+                Quaternion.identity
+            );
+        }
         int direction = (bulletInstance.transform.position.x > 0) ? 1 : -1;
         Bullet bullet = bulletInstance.GetComponent<Bullet>();
         bullet.SetProperties(

@@ -78,6 +78,7 @@ public class BuildController : MonoBehaviour
 
     private void PlaceWeapon(RaycastHit2D hit)
     {
+        Debug.Log(hit);
         _currentWeapon.transform.DOPunchScale(Vector2.one / .95f, 0.1f);
         hit.collider.gameObject.SetActive(false);
         foreach (GameObject item in points)

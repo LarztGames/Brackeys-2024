@@ -36,7 +36,9 @@ public class SOWeapon : ScriptableObject
     [Header("Weapon Attributes")]
     public WeaponType weaponType;
     public GameObject weaponPrefab;
-    public Sprite[] weaponSpritePerLevel;
+    public Sprite weaponSpriteLevelOne;
+    public Sprite weaponSpriteLevelTwo;
+    public Sprite weaponSpriteLevelThree;
     public int weaponLevel;
 
     [Header("Bullet Attributes")]
@@ -45,6 +47,12 @@ public class SOWeapon : ScriptableObject
     public float bulletDamage;
     public float bulletSpeed;
     public float bulletLifeTime;
+
+    [Range(1, 5)]
+    public float levelTwoMultiplier;
+
+    [Range(1, 5)]
+    public float levelThreeMultiplier;
 
     [Header("Costs")]
     public BuildComponents[] levelOneCost = new BuildComponents[3]; // Ahora es simplemente un BuildComponents, no una tupla.

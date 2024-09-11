@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -7,21 +6,59 @@ public abstract class Weapon : MonoBehaviour
     protected bool _placed;
 
     [SerializeField]
-    private Color normalColor;
+    protected SOWeapon weaponData;
+    protected float _fireRateTime;
+
+    #region Upgrade values
+    protected float _fireRate;
+    protected float _bulletDamage;
+    #endregion
 
     [SerializeField]
-    private Color unPlacedColor;
-    private SpriteRenderer _spriteRenderer;
+    protected Color normalColor;
 
-    void Start()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.color = unPlacedColor;
-    }
+    [SerializeField]
+    protected Color unPlacedColor;
+    protected SpriteRenderer _spriteRenderer;
+    protected int _level;
 
     public void Placed()
     {
         _spriteRenderer.color = normalColor;
         _placed = true;
     }
+
+    void Update()
+    {
+        if (_placed)
+        {
+            Shooting();
+        }
+        else
+        {
+            if (transform.position.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
+        }
+    }
+
+    public int GetLevel() => _level;
+
+    protected void Shooting()
+    {
+        _fireRateTime += Time.deltaTime;
+        if (RoundManager.instance.GetRoundState() != RoundState.Calm && _fireRateTime > _fireRate)
+        {
+            _fireRateTime = 0;
+            Shoot();
+        }
+    }
+
+    public abstract void UpdateLevel(int level);
+    protected abstract void Shoot();
 }

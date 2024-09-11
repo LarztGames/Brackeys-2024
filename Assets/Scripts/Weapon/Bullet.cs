@@ -64,10 +64,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Enemies>())
-        {
-            Explode();
-        }
+        // if (other.GetComponent<Enemies>())
+        // {
+        //     Explode();
+        // }
     }
 
     private void Explode()

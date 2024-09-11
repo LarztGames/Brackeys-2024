@@ -31,8 +31,6 @@ public class ShopManager : MonoBehaviour
         foreach (var item in weapon.levelOneCost)
         {
             float storageAmount = StorageManager.instance.GetLootByType(item.Loot);
-            Debug.Log($"Almacen: {storageAmount}");
-            Debug.Log($"Coste del arma: {item.Amount}");
             if (storageAmount < item.Amount && canBuy)
             {
                 canBuy = false;
