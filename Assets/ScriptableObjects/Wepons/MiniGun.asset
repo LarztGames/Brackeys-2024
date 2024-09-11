@@ -19,12 +19,12 @@ MonoBehaviour:
   weaponSpriteLevelThree: {fileID: -1822224724, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
   weaponLevel: 0
   bulletPrefab: {fileID: 5908059662911201270, guid: 2a550598905a30940b6ece9e68cc511b, type: 3}
-  fireRate: Infinity
-  bulletDamage: 0
+  fireRate: 0.5
+  bulletDamage: 2
   bulletSpeed: 30
   bulletLifeTime: 0.5
-  levelTwoMultiplier: 1
-  levelThreeMultiplier: 1
+  levelTwoMultiplier: 1.5
+  levelThreeMultiplier: 3
   levelOneCost:
   - loot: 0
     amount: 3
