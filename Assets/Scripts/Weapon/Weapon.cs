@@ -24,6 +24,7 @@ public abstract class Weapon : MonoBehaviour
 
     public void Placed()
     {
+        GetComponent<Collider2D>().isTrigger = false;
         _spriteRenderer.color = normalColor;
         _placed = true;
     }
@@ -44,6 +45,11 @@ public abstract class Weapon : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             }
+        }
+        if (_level >= 3)
+        {
+            _spriteRenderer.color = GetComponent<UpgradeManager>().normalColor;
+            GetComponent<UpgradeManager>().enabled = false;
         }
     }
 

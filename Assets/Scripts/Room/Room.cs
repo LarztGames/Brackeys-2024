@@ -12,63 +12,82 @@ namespace Dungeon
 
         [SerializeField]
         private List<Transform> resourceSpawnPoints = new List<Transform>();
+        private List<Transform> _resourceCopySpawnPoints = new List<Transform>();
 
         [SerializeField]
         private List<GameObject> traps = new List<GameObject>();
 
         [SerializeField]
         private List<Transform> trapSpawnPoints = new List<Transform>();
+        private List<Transform> _trapCopySpawnPoints = new List<Transform>();
 
         private List<GameObject> roomObjects = new List<GameObject>();
 
         void Start()
         {
-            GenerateLoot();
-            GenerateTraps();
+            ReloadRoom();
         }
 
         public void ReloadRoom()
         {
-            foreach (GameObject item in roomObjects)
+            _resourceCopySpawnPoints = CreateListCopy(resourceSpawnPoints);
+            _trapCopySpawnPoints = CreateListCopy(trapSpawnPoints);
+            if (roomObjects.Count != 0)
             {
-                Destroy(item);
+                foreach (GameObject item in roomObjects)
+                {
+                    if (item != null)
+                    {
+                        Destroy(item);
+                    }
+                }
             }
             GenerateLoot();
             GenerateTraps();
         }
 
+        private List<Transform> CreateListCopy(List<Transform> original)
+        {
+            List<Transform> copy = new List<Transform>();
+            foreach (Transform item in original)
+            {
+                copy.Add(item);
+            }
+            return copy;
+        }
+
         private void GenerateLoot()
         {
-            int lootToSpawn = UnityEngine.Random.Range(1, resourceSpawnPoints.Count + 1);
+            int lootToSpawn = UnityEngine.Random.Range(1, _resourceCopySpawnPoints.Count + 1);
             for (int i = 0; i < lootToSpawn; i++)
             {
                 int randomLoot = UnityEngine.Random.Range(0, resources.Count);
-                int randomPosition = UnityEngine.Random.Range(0, resourceSpawnPoints.Count);
+                int randomPosition = UnityEngine.Random.Range(0, _resourceCopySpawnPoints.Count);
                 GameObject loot = Instantiate(
                     resources[randomLoot],
-                    resourceSpawnPoints[randomPosition].position,
+                    _resourceCopySpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );
                 loot.transform.parent = transform;
-                resourceSpawnPoints.Remove(resourceSpawnPoints[randomPosition]);
+                _resourceCopySpawnPoints.Remove(_resourceCopySpawnPoints[randomPosition]);
                 roomObjects.Add(loot);
             }
         }
 
         private void GenerateTraps()
         {
-            int trapToSpawn = UnityEngine.Random.Range(1, trapSpawnPoints.Count + 1);
+            int trapToSpawn = UnityEngine.Random.Range(1, _trapCopySpawnPoints.Count + 1);
             for (int i = 0; i < trapToSpawn; i++)
             {
                 int randomTrap = UnityEngine.Random.Range(0, traps.Count);
-                int randomPosition = UnityEngine.Random.Range(0, trapSpawnPoints.Count);
+                int randomPosition = UnityEngine.Random.Range(0, _trapCopySpawnPoints.Count);
                 GameObject trap = Instantiate(
                     traps[randomTrap],
-                    trapSpawnPoints[randomPosition].position,
+                    _trapCopySpawnPoints[randomPosition].position,
                     Quaternion.identity
                 );
                 trap.transform.parent = transform;
-                trapSpawnPoints.Remove(trapSpawnPoints[randomPosition]);
+                _trapCopySpawnPoints.Remove(_trapCopySpawnPoints[randomPosition]);
                 roomObjects.Add(trap);
             }
         }

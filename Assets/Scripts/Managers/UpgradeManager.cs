@@ -6,13 +6,30 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class UpgradeManager : MonoBehaviour, IPointerClickHandler
+public class UpgradeManager
+    : MonoBehaviour,
+        IPointerClickHandler,
+        IPointerEnterHandler,
+        IPointerExitHandler
 {
     private GameObject _upgradeObject;
 
+    private SpriteRenderer _spriteRenderer;
+    public Color normalColor = Color.white;
+    public Color hoverColor = Color.gray;
     public UnityEvent onClick;
 
     private bool firstTime = true;
+
+    private void Start()
+    {
+        // Obtener el SpriteRenderer para cambiar el color del sprite
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.color = normalColor;
+        }
+    }
 
     private void Update()
     {
@@ -114,11 +131,32 @@ public class UpgradeManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.color = hoverColor;
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.color = normalColor;
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         // Invocar el evento OnClick
         if (onClick != null)
         {
+            GameObject obj = GameObject.FindGameObjectWithTag("Upgrades");
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
             onClick.Invoke();
         }
     }

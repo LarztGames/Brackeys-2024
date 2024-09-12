@@ -193,6 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6cb45f24504b04e9b9442af4e766c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.91147417, b: 0.3160377, a: 1}
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -234,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3704337726444243505, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4431032093215802409, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_Name
@@ -266,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fade60476f3cbe247bfd17fd95d561e2, type: 2}
     - target: {fileID: 6511108066197039741, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6539477043744484129, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -298,11 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6672631646238252951, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7385734419512638725, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 26.249998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7464583490644825148, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_Name
@@ -334,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fade60476f3cbe247bfd17fd95d561e2, type: 2}
     - target: {fileID: 8580576879012600180, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8580576879012600180, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_AnchoredPosition.x

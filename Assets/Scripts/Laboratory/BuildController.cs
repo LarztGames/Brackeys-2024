@@ -15,6 +15,9 @@ public class BuildController : MonoBehaviour
     private GameObject sidePoints;
 
     [SerializeField]
+    private GameObject topPoints;
+
+    [SerializeField]
     private Vector3 _mousePosition;
 
     private List<GameObject> points = new List<GameObject>();
@@ -29,22 +32,39 @@ public class BuildController : MonoBehaviour
 
     public void SetWeapon(SOWeapon weapon)
     {
+        if (_currentWeapon != null)
+        {
+            CancelPlace();
+        }
         switch (weapon.weaponType)
         {
+            case WeaponType.MiniGun:
             case WeaponType.Canon:
+            case WeaponType.Acid:
                 sidePoints.SetActive(true);
                 break;
 
-            case WeaponType.MiniGun:
-                sidePoints.SetActive(true);
+            case WeaponType.AutoTarget:
+            case WeaponType.Radiation:
+                topPoints.SetActive(true);
                 break;
         }
         _currentWeapon = Instantiate(weapon.weaponPrefab, _mousePosition, Quaternion.identity);
+        _currentWeapon.GetComponent<Collider2D>().isTrigger = true;
+    }
+
+    private void CancelPlace()
+    {
+        Destroy(_currentWeapon.gameObject);
+        _currentWeapon = null;
+        _actualLootType = null;
+        _actualLootCost = null;
     }
 
     void Start()
     {
         points.Add(sidePoints);
+        points.Add(topPoints);
     }
 
     void Update()
@@ -58,6 +78,11 @@ public class BuildController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             CastRay();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            CancelPlace();
         }
     }
 
@@ -76,9 +101,9 @@ public class BuildController : MonoBehaviour
         }
     }
 
+    #region Place
     private void PlaceWeapon(RaycastHit2D hit)
     {
-        Debug.Log(hit);
         _currentWeapon.transform.DOPunchScale(Vector2.one / .95f, 0.1f);
         hit.collider.gameObject.SetActive(false);
         foreach (GameObject item in points)
@@ -102,4 +127,5 @@ public class BuildController : MonoBehaviour
         _actualLootType = lootType;
         _actualLootCost = lootCost;
     }
+    #endregion
 }

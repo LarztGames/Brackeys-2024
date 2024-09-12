@@ -14,13 +14,13 @@ namespace Dungeon
         void Awake()
         {
             instance = (instance == null) ? this : instance;
-            rooms = GetComponentsInChildren<Room>();
         }
 
         public void ReloadDungeon()
         {
             foreach (Room room in rooms)
             {
+                Debug.Log($"Reloading room: {room.gameObject.name}");
                 room.ReloadRoom();
             }
         }

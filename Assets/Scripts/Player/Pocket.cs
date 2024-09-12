@@ -34,7 +34,6 @@ namespace Player
         {
             Collectable collectable = resource.GetComponent<Collectable>();
             SOCollectableResource collectableData = collectable.GetCollectableData();
-            Debug.Log(collectableData);
             if (_currentCapacity == 0 || (_currentCapacity - collectableData.weight) < 0)
             {
                 Debug.Log("Pocket is full");
@@ -69,6 +68,7 @@ namespace Player
             }
             _resources.Clear();
             _currentCapacity = capacity;
+            pocketSlider.value = 0;
             return true;
         }
 

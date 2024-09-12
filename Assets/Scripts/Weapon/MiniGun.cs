@@ -26,7 +26,6 @@ public class MiniGun : Weapon
 
     protected override void Shoot()
     {
-        Debug.Log(_level);
         GameObject bulletInstance;
         if (_level != 0)
         {

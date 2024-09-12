@@ -1272,7 +1272,7 @@ GameObject:
   - component: {fileID: 385899806187137496}
   m_Layer: 3
   m_Name: BaseUpgradeCanvas
-  m_TagString: Untagged
+  m_TagString: Upgrades
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

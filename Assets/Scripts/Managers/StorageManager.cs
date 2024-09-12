@@ -49,7 +49,6 @@ public class StorageManager : MonoBehaviour
 
     public void AddLoot(List<SOCollectableResource> resources)
     {
-        Debug.Log("adding loot");
         foreach (var resource in resources)
         {
             switch (resource.lootType)

@@ -100,6 +100,7 @@ namespace Managers
         #region Storm
         private void StormState()
         {
+            WaveManager.instance.StartWave();
             stormIconAnimator.SetBool("storm", true);
             if (_currentStormTimer > 0)
             {
@@ -107,7 +108,6 @@ namespace Managers
             }
             else
             {
-                stormIconAnimator.SetBool("storm", false);
                 state = RoundState.Transition;
                 timerSlider.maxValue = transitionTime;
                 timerSlider.value = 0;
@@ -118,9 +118,13 @@ namespace Managers
         #region Transition
         private void TransitionState()
         {
-            stormIconAnimator.SetBool("transition", true);
-            if (_currentTransitionTimer < transitionTime)
+            if (
+                _currentTransitionTimer < transitionTime
+                && GameObject.FindGameObjectsWithTag("Enemy").Length <= 0
+            )
             {
+                stormIconAnimator.SetBool("storm", false);
+                stormIconAnimator.SetBool("transition", true);
                 _currentTransitionTimer += Time.deltaTime;
                 timerSlider.value = Mathf.Lerp(
                     timerSlider.value,
@@ -130,15 +134,19 @@ namespace Managers
             }
             else
             {
-                // TODO: Comprobar que todos los enemigos han muerto
-                // Reset de los temporizadores
-                stormIconAnimator.SetBool("transition", false);
-                _currentCalmTimer = calmTime;
-                _currentStormTimer = stormTime;
-                _currentTransitionTimer = 0;
-                timerSlider.maxValue = calmTime;
-                timerSlider.value = calmTime;
-                state = RoundState.Calm;
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
+                {
+                    // TODO: Comprobar que todos los enemigos han muerto
+                    WaveManager.instance.NextWave();
+                    // Reset de los temporizadores
+                    stormIconAnimator.SetBool("transition", false);
+                    _currentCalmTimer = calmTime;
+                    _currentStormTimer = stormTime;
+                    _currentTransitionTimer = 0;
+                    timerSlider.maxValue = calmTime;
+                    timerSlider.value = calmTime;
+                    state = RoundState.Calm;
+                }
             }
         }
         #endregion

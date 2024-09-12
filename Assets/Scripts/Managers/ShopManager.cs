@@ -46,6 +46,5 @@ public class ShopManager : MonoBehaviour
             BuildController.instance.SetWeapon(weapon);
             BuildController.instance.SetCost(lootType, lootCost);
         }
-        Debug.Log(canBuy);
     }
 }

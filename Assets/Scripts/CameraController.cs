@@ -27,8 +27,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            ChangeOrthoSize(14, 0.1f);
-            SetPosition(new Vector2(0, 22));
+            ChangeOrthoSize(10, 0.1f);
+            SetPosition(new Vector2(0, 18));
             MovePosition();
         }
     }

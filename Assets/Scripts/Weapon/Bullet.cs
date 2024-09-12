@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -64,10 +65,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if (other.GetComponent<Enemies>())
-        // {
-        //     Explode();
-        // }
+        if (other.GetComponent<BaseEnemy>())
+        {
+            Explode();
+        }
     }
 
     private void Explode()
@@ -75,4 +76,6 @@ public class Bullet : MonoBehaviour
         // Instantiate(explodeEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
+
+    public float GetDoDamage() => _bulletDamage;
 }
