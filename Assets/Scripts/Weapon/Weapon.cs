@@ -60,7 +60,7 @@ public abstract class Weapon : MonoBehaviour
     protected void Shooting()
     {
         _fireRateTime += Time.deltaTime;
-        if (RoundManager.instance.RemainingEnemies() && _fireRateTime > _fireRate)
+        if (!RoundManager.instance.RemainingEnemies() && _fireRateTime > _fireRate)
         {
             _fireRateTime = 0;
             Shoot();

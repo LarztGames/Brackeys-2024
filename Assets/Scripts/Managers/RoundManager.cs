@@ -18,10 +18,9 @@ namespace Managers
         public static RoundManager instance { get; set; }
 
         [SerializeField]
-        private Slider timerSlider;
+        private Image timerImage; // Cambiado a Image en lugar de Slider
         private RoundState state;
 
-        //FF2D2D
         [SerializeField]
         private Animator stormIconAnimator;
 
@@ -56,8 +55,8 @@ namespace Managers
             _currentStormTimer = stormTime;
             _currentTransitionTimer = 0;
 
-            timerSlider.maxValue = calmTime;
-            timerSlider.value = calmTime;
+            // Inicializar el valor del fillAmount del timer
+            timerImage.fillAmount = 1f; // Esto representa 100% lleno
 
             stormIconAnimator.SetFloat("calm", _currentCalmTimer);
             state = RoundState.Calm;
@@ -96,9 +95,10 @@ namespace Managers
             if (_currentCalmTimer > 0)
             {
                 _currentCalmTimer -= Time.deltaTime;
-                timerSlider.value = Mathf.Lerp(
-                    timerSlider.value,
-                    _currentCalmTimer,
+                // Actualiza el fillAmount de la imagen basado en el tiempo restante
+                timerImage.fillAmount = Mathf.Lerp(
+                    timerImage.fillAmount,
+                    _currentCalmTimer / calmTime,
                     5 * Time.deltaTime
                 );
             }
@@ -106,7 +106,7 @@ namespace Managers
             {
                 // Transition to Storm
                 state = RoundState.Storm;
-                timerSlider.value = 0;
+                timerImage.fillAmount = 0;
             }
         }
         #endregion
@@ -123,8 +123,7 @@ namespace Managers
             else
             {
                 state = RoundState.Transition;
-                timerSlider.maxValue = transitionTime;
-                timerSlider.value = 0;
+                timerImage.fillAmount = 0;
             }
         }
         #endregion
@@ -140,9 +139,9 @@ namespace Managers
                 stormIconAnimator.SetBool("storm", false);
                 stormIconAnimator.SetBool("transition", true);
                 _currentTransitionTimer += Time.deltaTime;
-                timerSlider.value = Mathf.Lerp(
-                    timerSlider.value,
-                    _currentTransitionTimer,
+                timerImage.fillAmount = Mathf.Lerp(
+                    timerImage.fillAmount,
+                    _currentTransitionTimer / transitionTime,
                     5 * Time.deltaTime
                 );
             }
@@ -150,15 +149,13 @@ namespace Managers
             {
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
                 {
-                    // TODO: Comprobar que todos los enemigos han muerto
                     WaveManager.instance.NextWave();
                     // Reset de los temporizadores
                     stormIconAnimator.SetBool("transition", false);
                     _currentCalmTimer = calmTime;
                     _currentStormTimer = stormTime;
                     _currentTransitionTimer = 0;
-                    timerSlider.maxValue = calmTime;
-                    timerSlider.value = calmTime;
+                    timerImage.fillAmount = 1f; // Reiniciar el fillAmount a 100%
                     state = RoundState.Calm;
                 }
             }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Laboratory : MonoBehaviour
 {
     [SerializeField]
-    private Slider healthSlider;
+    private Image healthImage; // Reemplazamos el Slider por una Image
 
     [SerializeField]
     private float graceTimer;
@@ -18,8 +18,8 @@ public class Laboratory : MonoBehaviour
 
     void Start()
     {
-        healthSlider.maxValue = health;
-        healthSlider.value = health;
+        // Al iniciar, el fillAmount debe estar lleno (1) ya que la salud está completa
+        healthImage.fillAmount = 1f;
         _currentHealth = health;
     }
 
@@ -38,7 +38,13 @@ public class Laboratory : MonoBehaviour
         {
             _graceTime = 0;
             _currentHealth -= damage;
-            healthSlider.value = Mathf.Lerp(healthSlider.value, _currentHealth, 5 * Time.deltaTime);
+
+            // Normalizar el valor de salud para que fillAmount esté entre 0 y 1
+            healthImage.fillAmount = Mathf.Lerp(
+                healthImage.fillAmount,
+                _currentHealth / health,
+                5 * Time.deltaTime
+            );
         }
     }
 

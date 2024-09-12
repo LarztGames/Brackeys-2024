@@ -116,7 +116,6 @@ namespace Enemy
             if (other.gameObject.CompareTag("Lab"))
             {
                 _targetCollider = other;
-                _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
             }
 
             if (other.gameObject.CompareTag("Bullet"))

@@ -9,39 +9,44 @@ namespace Player
     public class Pocket : MonoBehaviour
     {
         [SerializeField]
-        private Slider pocketSlider;
+        private Image pocketImage; // Cambiado a Image para usar fillAmount
 
         [SerializeField]
-        private float capacity;
-        private float _currentCapacity;
+        private float capacity; // La capacidad total de la mochila
+        private float _currentCapacity; // La capacidad restante en la mochila
 
-        // [SerializeField]
+        // Rango para drop de loot
+        [SerializeField]
         private int pocketDropRadius;
 
-        // [SerializeField]
+        [SerializeField]
         private int pocketMinRadius;
 
         private List<SOCollectableResource> _resources = new List<SOCollectableResource>();
 
         void Start()
         {
-            pocketSlider.maxValue = capacity;
-            pocketSlider.value = 0;
-            _currentCapacity = capacity;
+            _currentCapacity = 0; // Empezamos con la mochila vacía (capacidad usada es 0)
+            UpdatePocketImage(); // Actualizamos el fillAmount
         }
 
         public bool TryAddResource(GameObject resource)
         {
             Collectable collectable = resource.GetComponent<Collectable>();
             SOCollectableResource collectableData = collectable.GetCollectableData();
-            if (_currentCapacity == 0 || (_currentCapacity - collectableData.weight) < 0)
+
+            // Si añadir el recurso excede la capacidad, rechazamos el recurso
+            if ((_currentCapacity + collectableData.weight) > capacity)
             {
                 Debug.Log("Pocket is full");
                 return false;
             }
+
+            // Añadir el recurso y actualizar la capacidad usada
             _resources.Add(collectableData);
-            _currentCapacity -= collectableData.weight;
-            pocketSlider.value += collectableData.weight;
+            _currentCapacity += collectableData.weight; // Sumamos al total de recursos recogidos
+
+            UpdatePocketImage(); // Actualizamos el fillAmount de la imagen
             return true;
         }
 
@@ -52,10 +57,14 @@ namespace Player
                 Debug.Log("Pocket is empty");
                 return false;
             }
+
+            // Remover un recurso aleatorio de la mochila
             int index = Random.Range(0, _resources.Count);
             SOCollectableResource collectableData = _resources[index];
             _resources.Remove(collectableData);
-            _currentCapacity += collectableData.weight;
+            _currentCapacity -= collectableData.weight; // Restamos el peso del recurso removido
+
+            UpdatePocketImage(); // Actualizamos el fillAmount
             return true;
         }
 
@@ -66,16 +75,18 @@ namespace Player
                 Debug.Log("Pocket is empty");
                 return false;
             }
+
+            // Limpiar la mochila y resetear la capacidad
             _resources.Clear();
-            _currentCapacity = capacity;
-            pocketSlider.value = 0;
+            _currentCapacity = 0; // La mochila está vacía
+
+            UpdatePocketImage(); // Actualizamos el fillAmount
             return true;
         }
 
-        // Tiene bugs, se puede instanciar objetos dentro de la pared, tal vez sea mejor que lo dropea siempre hacia abajo
-        // O calcular si en la posicion que se va a generar el objeto hay una colision con una pared o una trampa y que lo vuelva a cambiar
         private void DropLoot()
         {
+            // Código para dropear recursos
             float angle = Random.Range(pocketMinRadius, Mathf.PI * 2);
             float distance = Random.Range(pocketMinRadius, pocketDropRadius);
             float x = Mathf.Cos(angle) * distance;
@@ -85,8 +96,17 @@ namespace Player
             Instantiate(_resources[index].gameObject, position, Quaternion.identity);
         }
 
-        public float GetCapacityDiference() => _currentCapacity / capacity;
+        // Este método se asegura de que la barra visual refleje el llenado de la mochila
+        private void UpdatePocketImage()
+        {
+            // El fillAmount debe ser el porcentaje de la capacidad total que ha sido usada
+            pocketImage.fillAmount = Mathf.Clamp01(_currentCapacity / capacity);
+        }
 
+        // Devuelve la diferencia de capacidad (usado vs total)
+        public float GetCapacityDiference() => 1 - (_currentCapacity / capacity);
+
+        // Devuelve los recursos actuales en la mochila
         public List<SOCollectableResource> GetResources() => _resources;
     }
 }

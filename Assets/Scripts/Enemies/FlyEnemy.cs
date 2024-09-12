@@ -58,6 +58,7 @@ namespace Enemy
             // Do dame to laboratory
             Debug.Log($"{gameObject.name} attack {_targetCollider.name}");
             // Wait for seconds for next attack
+            _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
         }
 
         protected override void Direction()
