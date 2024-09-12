@@ -16,6 +16,7 @@ namespace Enemy
             _collider = GetComponent<Collider2D>();
             _currentHealth = data.health;
             _receivingDamageTimer = GetAnimationDuration("WalkReceiveDamage");
+            _maxAliveTimer = 0;
         }
 
         void Update()
@@ -32,6 +33,11 @@ namespace Enemy
             {
                 _rb.velocity = Vector2.zero;
                 Attack();
+            }
+            _maxAliveTimer += Time.deltaTime;
+            if (_maxAliveTimer > data.maxTimeAlive)
+            {
+                Die();
             }
         }
 

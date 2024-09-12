@@ -42,10 +42,12 @@ public class UpgradeManager
 
     public void OpenUpgrade(GameObject upgradeObject)
     {
+        Debug.Log("Upgrade old obj: " + _upgradeObject);
         if (_upgradeObject != null)
         {
             CloseUpgrade();
         }
+        Debug.Log("Upgrade new obj: " + upgradeObject);
         _upgradeObject = upgradeObject;
         _upgradeObject.SetActive(true);
     }

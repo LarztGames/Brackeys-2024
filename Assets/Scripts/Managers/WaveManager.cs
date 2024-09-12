@@ -33,6 +33,8 @@ public class WaveManager : MonoBehaviour
     {
         if (_currentWave >= waves.Count)
         {
+            // TODO hay que poner si el jugador quiere un modo infinito
+            GameManager.instance.OnWin("WinScene");
             Debug.Log($"Current wave: {_currentWave}. Max waves: {waves.Count}.");
             Debug.Log("No hay mas rondas, modo loop");
             _currentWave = waves.Count - 1;

@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     protected bool _placed;
+    protected GameObject _placeObj;
 
     [SerializeField]
     protected SOWeapon weaponData;
@@ -22,9 +23,10 @@ public abstract class Weapon : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     protected int _level;
 
-    public void Placed()
+    public void Placed(GameObject placeObj)
     {
         GetComponent<Collider2D>().isTrigger = false;
+        _placeObj = placeObj;
         _spriteRenderer.color = normalColor;
         _placed = true;
     }
@@ -58,11 +60,18 @@ public abstract class Weapon : MonoBehaviour
     protected void Shooting()
     {
         _fireRateTime += Time.deltaTime;
-        if (RoundManager.instance.GetRoundState() != RoundState.Calm && _fireRateTime > _fireRate)
+        if (RoundManager.instance.RemainingEnemies() && _fireRateTime > _fireRate)
         {
             _fireRateTime = 0;
             Shoot();
         }
+    }
+
+    public void Remove()
+    {
+        // TODO: Animation
+        _placeObj.SetActive(true);
+        Destroy(gameObject);
     }
 
     public abstract void UpdateLevel(int level);

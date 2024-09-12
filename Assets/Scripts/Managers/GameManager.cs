@@ -4,6 +4,7 @@ using Dungeon;
 using Managers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,6 +53,16 @@ public class GameManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+    }
+
+    public void OnWin(string sceneName)
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnLose(string sceneName)
+    {
+        SceneManager.LoadScene(0);
     }
 
     public bool OnLab() => _onLab;

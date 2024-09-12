@@ -20,6 +20,7 @@ namespace Enemy
             _rb.gravityScale = 0;
             _currentHealth = data.health;
             _receivingDamageTimer = GetAnimationDuration("FlyReceiveDamage");
+            _maxAliveTimer = 0;
         }
 
         void Update()
@@ -32,6 +33,11 @@ namespace Enemy
             if (IsAttacking)
             {
                 Attack();
+            }
+            _maxAliveTimer += Time.deltaTime;
+            if (_maxAliveTimer > data.maxTimeAlive)
+            {
+                Die();
             }
         }
 

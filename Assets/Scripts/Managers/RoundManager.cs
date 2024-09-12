@@ -28,14 +28,18 @@ namespace Managers
         [Header("Calm Time")]
         [SerializeField]
         private float calmTime;
+        private bool _canStartCalm;
         private float _currentCalmTimer;
+
+        [SerializeField]
+        private Button disableOnStorm;
 
         [Header("Storm Time")]
         [SerializeField]
         private float stormTime;
         private float _currentStormTimer;
 
-        [Header("Storm Time")]
+        [Header("Transition Time")]
         [SerializeField]
         private float transitionTime;
         private float _currentTransitionTimer;
@@ -55,6 +59,7 @@ namespace Managers
             timerSlider.maxValue = calmTime;
             timerSlider.value = calmTime;
 
+            stormIconAnimator.SetFloat("calm", _currentCalmTimer);
             state = RoundState.Calm;
             #endregion
         }
@@ -64,21 +69,30 @@ namespace Managers
             switch (state)
             {
                 case RoundState.Calm:
-                    CalmState();
+                    disableOnStorm.enabled = true;
+                    stormIconAnimator.SetFloat("calm", _currentCalmTimer);
+                    if (_canStartCalm)
+                    {
+                        CalmState();
+                    }
                     break;
                 case RoundState.Storm:
+                    _canStartCalm = false;
+                    disableOnStorm.enabled = false;
                     StormState();
                     break;
                 case RoundState.Transition:
+                    disableOnStorm.enabled = false;
                     TransitionState();
+                    break;
+                default:
                     break;
             }
         }
 
         #region Calm
-        private void CalmState()
+        public void CalmState()
         {
-            stormIconAnimator.SetFloat("calm", _currentCalmTimer);
             if (_currentCalmTimer > 0)
             {
                 _currentCalmTimer -= Time.deltaTime;
@@ -151,6 +165,10 @@ namespace Managers
         }
         #endregion
 
+        public void StartCalm() => _canStartCalm = true;
+
         public RoundState GetRoundState() => state;
+
+        public bool RemainingEnemies() => (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0);
     }
 }

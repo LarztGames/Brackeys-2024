@@ -17,3 +17,4 @@ MonoBehaviour:
   rangeAttack: 2
   attackRate: 5
   damage: 5
+  maxTimeAlive: 20

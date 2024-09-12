@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db23e604099c204184ab74ce4bb41b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 0}
 --- !u!114 &4591333158339783416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pocketSlider: {fileID: 0}
-  capacity: 10
+  capacity: 20
 --- !u!114 &5509481389898852414
 MonoBehaviour:
   m_ObjectHideFlags: 0

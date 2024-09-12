@@ -15,5 +15,6 @@ namespace Enemy
         public float rangeAttack;
         public float attackRate;
         public float damage;
+        public float maxTimeAlive;
     }
 }

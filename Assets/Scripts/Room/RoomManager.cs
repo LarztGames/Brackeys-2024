@@ -20,7 +20,6 @@ namespace Dungeon
         {
             foreach (Room room in rooms)
             {
-                Debug.Log($"Reloading room: {room.gameObject.name}");
                 room.ReloadRoom();
             }
         }

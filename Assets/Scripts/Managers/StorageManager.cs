@@ -86,9 +86,9 @@ public class StorageManager : MonoBehaviour
 
     private void UpdateText()
     {
-        silverText.text = $"{_silverAmount}";
-        zafiroText.text = $"{_zafiroAmount}";
-        opaloText.text = $"{_opaloAmount}";
+        silverText.text = ((int)_silverAmount).ToString("D3");
+        zafiroText.text = ((int)_zafiroAmount).ToString("D3");
+        opaloText.text = ((int)_opaloAmount).ToString("D3");
     }
 
     public float GetLootByType(LootType lootType)

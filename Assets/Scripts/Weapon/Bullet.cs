@@ -67,6 +67,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.GetComponent<BaseEnemy>())
         {
+            // TODO: Animation
             Explode();
         }
     }

@@ -32,6 +32,7 @@ namespace Enemy
 
         protected float _currentHealth;
         protected float _receivingDamageTimer;
+        protected float _maxAliveTimer;
 
         public bool IsAttacking => _currentState == EnemyState.Attacking;
         public bool IsMoving => _currentState == EnemyState.Moving;
@@ -54,6 +55,7 @@ namespace Enemy
         {
             if (_currentHealth <= 0)
             {
+                // TODO: Animation
                 Destroy(gameObject);
             }
         }
@@ -114,6 +116,7 @@ namespace Enemy
             if (other.gameObject.CompareTag("Lab"))
             {
                 _targetCollider = other;
+                _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
             }
 
             if (other.gameObject.CompareTag("Bullet"))
@@ -122,13 +125,29 @@ namespace Enemy
                 float damageReceive = other.gameObject.GetComponent<Bullet>().GetDoDamage();
                 StartCoroutine(ReceivingDamage(damageReceive));
             }
+
+            if (other.gameObject.CompareTag("RadiationBullet"))
+            {
+                _lastState = _currentState;
+                float damageReceive = other
+                    .gameObject.GetComponent<RadiationBullet>()
+                    .GetDoDamage();
+                StartCoroutine(ReceivingDamage(damageReceive));
+            }
+
+            if (other.gameObject.CompareTag("AutoBullet"))
+            {
+                _lastState = _currentState;
+                float damageReceive = other.gameObject.GetComponent<AutoBullet>().GetDoDamage();
+                StartCoroutine(ReceivingDamage(damageReceive));
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Lab"))
             {
-                _targetCollider = other;
+                _targetCollider = null;
             }
         }
     }

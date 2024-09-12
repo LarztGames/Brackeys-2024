@@ -12,7 +12,10 @@ public class BuildController : MonoBehaviour
     private GameObject _currentWeapon;
 
     [SerializeField]
-    private GameObject sidePoints;
+    private GameObject leftSidePoints;
+
+    [SerializeField]
+    private GameObject rightSidePoints;
 
     [SerializeField]
     private GameObject topPoints;
@@ -41,7 +44,8 @@ public class BuildController : MonoBehaviour
             case WeaponType.MiniGun:
             case WeaponType.Canon:
             case WeaponType.Acid:
-                sidePoints.SetActive(true);
+                leftSidePoints.SetActive(true);
+                rightSidePoints.SetActive(true);
                 break;
 
             case WeaponType.AutoTarget:
@@ -63,7 +67,8 @@ public class BuildController : MonoBehaviour
 
     void Start()
     {
-        points.Add(sidePoints);
+        points.Add(leftSidePoints);
+        points.Add(rightSidePoints);
         points.Add(topPoints);
     }
 
@@ -88,14 +93,13 @@ public class BuildController : MonoBehaviour
 
     private void CastRay()
     {
-        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(
-            worldPosition,
-            Vector2.right,
+            _mousePosition,
+            Vector2.zero,
             10f,
             LayerMask.GetMask("WeaponPlace")
         );
-        if (hit.collider != null && _currentWeapon != null)
+        if (hit.collider != null && hit.collider.CompareTag("PlacePoint") && _currentWeapon != null)
         {
             PlaceWeapon(hit);
         }
@@ -117,7 +121,7 @@ public class BuildController : MonoBehaviour
         {
             StorageManager.instance.RemoveLoot(_actualLootType[i], _actualLootCost[i]);
         }
-        _currentWeapon.GetComponent<Weapon>().Placed();
+        _currentWeapon.GetComponent<Weapon>().Placed(hit.collider.gameObject);
         _currentWeapon.transform.position = hit.collider.transform.position;
         _currentWeapon = null;
     }
