@@ -715,7 +715,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -736,7 +736,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 96
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -798,12 +798,12 @@ TextureImporter:
       name: Dungeon_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 112
+        y: 80
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -819,12 +819,12 @@ TextureImporter:
       name: Dungeon_5
       rect:
         serializedVersion: 2
-        x: 112
-        y: 96
+        x: 128
+        y: 80
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,12 +840,12 @@ TextureImporter:
       name: Dungeon_6
       rect:
         serializedVersion: 2
-        x: 96
-        y: 80
+        x: 112
+        y: 64
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -861,7 +861,28 @@ TextureImporter:
       name: Dungeon_7
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51e38afedf42f9e419316f0394ff363a
+      internalID: -771389760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon_8
+      rect:
+        serializedVersion: 2
+        x: 160
         y: 80
         width: 16
         height: 16
@@ -872,8 +893,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51e38afedf42f9e419316f0394ff363a
-      internalID: -771389760
+      spriteID: 41454fb540fd107419466db5f05298aa
+      internalID: -119960110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a19fb8e319cb19649965d106d023e7e3
+      internalID: -135556885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce25eae3d1231ff4daf6c84e0d2a3d1f
+      internalID: 1845243792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 078e1f999d230b9408faf6d6b9d0fa17
+      internalID: -1203543990
       vertices: []
       indices: 
       edges: []
@@ -891,12 +975,16 @@ TextureImporter:
     nameFileIdTable:
       Dungeon_0: 1239225500
       Dungeon_1: 395152095
+      Dungeon_10: 1845243792
+      Dungeon_11: -1203543990
       Dungeon_2: 268150801
       Dungeon_3: -348427644
       Dungeon_4: -39065737
       Dungeon_5: -1291208106
       Dungeon_6: 1977070042
       Dungeon_7: -771389760
+      Dungeon_8: -119960110
+      Dungeon_9: -135556885
       Tileset_Plantilla_0: -736152266
       Tileset_Plantilla_1: 1641987435
       Tileset_Plantilla_10: 1647224800
