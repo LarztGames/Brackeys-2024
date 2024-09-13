@@ -24,6 +24,9 @@ namespace Managers
         [SerializeField]
         private Animator stormIconAnimator;
 
+        [SerializeField]
+        private GameObject rainEffect;
+
         [Header("Calm Time")]
         [SerializeField]
         private float calmTime;
@@ -65,6 +68,14 @@ namespace Managers
 
         void Update()
         {
+            if (state != RoundState.Calm)
+            {
+                rainEffect.SetActive(true);
+            }
+            else
+            {
+                rainEffect.SetActive(false);
+            }
             switch (state)
             {
                 case RoundState.Calm:

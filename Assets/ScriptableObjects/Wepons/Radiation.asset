@@ -29,7 +29,7 @@ MonoBehaviour:
   - loot: 0
     amount: 2
   - loot: 1
-    amount: 6
+    amount: 5
   - loot: 2
     amount: 0
   levelTwoCost:
