@@ -140,6 +140,13 @@ namespace Enemy
                 float damageReceive = other.gameObject.GetComponent<AutoBullet>().GetDoDamage();
                 StartCoroutine(ReceivingDamage(damageReceive));
             }
+
+            if (other.gameObject.CompareTag("AcidBullet"))
+            {
+                _lastState = _currentState;
+                float damageReceive = other.gameObject.GetComponent<AcidBullet>().GetDoDamage();
+                StartCoroutine(ReceivingDamage(damageReceive));
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)

@@ -4,17 +4,48 @@ using UnityEngine;
 
 public class Acid : Weapon
 {
-    public override void UpdateLevel(int level)
+    [SerializeField]
+    private Transform bulletSpawnPoint;
+
+    [SerializeField]
+    private Transform bulletTargetPoint;
+
+    private void Start()
     {
-        throw new System.NotImplementedException();
+        _fireRate = weaponData.fireRate;
+        _bulletDamage = weaponData.bulletDamage;
+
+        _placed = false;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.color = unPlacedColor;
+        _fireRateTime = 0;
+        weaponData.weaponLevel = 0;
     }
 
     protected override void Shoot()
     {
-        throw new System.NotImplementedException();
+        GameObject bulletInstance = Instantiate(
+            weaponData.bulletPrefab,
+            bulletSpawnPoint.position,
+            Quaternion.identity
+        );
+        AcidBullet bullet = bulletInstance.GetComponent<AcidBullet>();
+        bullet.SetProperties(
+            weaponData.bulletDamage,
+            weaponData.bulletSpeed,
+            weaponData.bulletLifeTime,
+            bulletTargetPoint
+        );
     }
 
-    void Start() { }
-
-    void Update() { }
+    public override void UpdateLevel(int level)
+    {
+        _level = level;
+        if (level == 3)
+        {
+            _bulletDamage *= weaponData.levelThreeMultiplier;
+            _fireRate /= weaponData.levelThreeMultiplier;
+            _spriteRenderer.sprite = weaponData.weaponSpriteLevelThree;
+        }
+    }
 }

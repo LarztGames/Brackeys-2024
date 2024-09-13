@@ -50,8 +50,8 @@ public abstract class Weapon : MonoBehaviour
         }
         if (_level >= 3)
         {
-            _spriteRenderer.color = GetComponent<UpgradeManager>().normalColor;
-            GetComponent<UpgradeManager>().enabled = false;
+            // _spriteRenderer.color = GetComponent<UpgradeManager>().normalColor;
+            // GetComponent<UpgradeManager>().enabled = false;
         }
     }
 

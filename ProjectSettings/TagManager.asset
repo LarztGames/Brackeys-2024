@@ -12,6 +12,8 @@ TagManager:
   - RadiationBullet
   - PlacePoint
   - AutoBullet
+  - Floor
+  - AcidBullet
   layers:
   - Default
   - TransparentFX

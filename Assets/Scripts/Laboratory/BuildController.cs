@@ -59,7 +59,10 @@ public class BuildController : MonoBehaviour
 
     private void CancelPlace()
     {
-        Destroy(_currentWeapon.gameObject);
+        if (_currentWeapon != null)
+        {
+            Destroy(_currentWeapon.gameObject);
+        }
         _currentWeapon = null;
         _actualLootType = null;
         _actualLootCost = null;

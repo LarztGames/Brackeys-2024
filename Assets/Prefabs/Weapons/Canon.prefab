@@ -592,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6672631646238252951, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_Name
-      value: BaseUpgradeCanvas
+      value: CanonUpgradeCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 6672631646238252951, guid: 25361d201e410a54fa1ac2c9af9ede76, type: 3}
       propertyPath: m_IsActive

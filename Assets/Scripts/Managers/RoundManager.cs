@@ -25,6 +25,12 @@ namespace Managers
         private Animator stormIconAnimator;
 
         [SerializeField]
+        private Animator elevatorAnimator;
+
+        [SerializeField]
+        private GameObject elevatorButtonSprite;
+
+        [SerializeField]
         private GameObject rainEffect;
 
         [Header("Calm Time")]
@@ -71,10 +77,17 @@ namespace Managers
             if (state != RoundState.Calm)
             {
                 rainEffect.SetActive(true);
+                if (GameManager.instance.OnLab())
+                {
+                    elevatorAnimator.SetBool("open", false);
+                    elevatorButtonSprite.SetActive(false);
+                }
             }
             else
             {
                 rainEffect.SetActive(false);
+                elevatorButtonSprite.SetActive(true);
+                elevatorAnimator.SetBool("open", true);
             }
             switch (state)
             {

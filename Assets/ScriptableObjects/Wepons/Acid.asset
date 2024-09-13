@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c84b14d7f77249bf29d691395fcd6, type: 3}
+  m_Name: Acid
+  m_EditorClassIdentifier: 
+  weaponType: 2
+  weaponPrefab: {fileID: 1727676520500739670, guid: 3e1ae6395798357429365970f8219abc, type: 3}
+  weaponSpriteLevelOne: {fileID: 1503168890, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
+  weaponSpriteLevelTwo: {fileID: 1503168890, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
+  weaponSpriteLevelThree: {fileID: 1028734321, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
+  weaponLevel: 0
+  bulletPrefab: {fileID: 3463400623359781436, guid: cbad115531234904481448734bf51172, type: 3}
+  fireRate: 1
+  bulletDamage: 4
+  bulletSpeed: 5
+  bulletLifeTime: 4
+  levelTwoMultiplier: 1.3
+  levelThreeMultiplier: 1.3
+  levelOneCost:
+  - loot: 0
+    amount: 2
+  - loot: 1
+    amount: 2
+  - loot: 2
+    amount: 0
+  levelTwoCost:
+  - loot: 0
+    amount: 2
+  - loot: 1
+    amount: 2
+  - loot: 2
+    amount: 0
+  levelThreeCost:
+  - loot: 0
+    amount: 0
+  - loot: 1
+    amount: 0
+  - loot: 2
+    amount: 3

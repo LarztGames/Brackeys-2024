@@ -7,6 +7,9 @@ namespace Enemy
     public class FlyEnemy : BaseEnemy
     {
         [SerializeField]
+        private GameObject proyectil;
+
+        [SerializeField]
         private float oscilationRange;
 
         private float _direction;
@@ -58,6 +61,7 @@ namespace Enemy
             // Do dame to laboratory
             Debug.Log($"{gameObject.name} attack {_targetCollider.name}");
             // Wait for seconds for next attack
+            // Instanciar un proyectil
             _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
         }
 
