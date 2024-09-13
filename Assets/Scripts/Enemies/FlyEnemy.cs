@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace Enemy
             CheckRangeAttack();
             if (IsAttacking)
             {
-                Attack();
+                StartCoroutine(SpawnEgg());
             }
             _maxAliveTimer += Time.deltaTime;
             if (_maxAliveTimer > data.maxTimeAlive)
@@ -56,13 +57,13 @@ namespace Enemy
             _rb.velocity = new Vector2(horizontalMovement.x, verticalOscillation);
         }
 
-        protected override void Attack()
+        protected override void Attack() { }
+
+        private IEnumerator SpawnEgg()
         {
-            // Do dame to laboratory
-            Debug.Log($"{gameObject.name} attack {_targetCollider.name}");
-            // Wait for seconds for next attack
-            // Instanciar un proyectil
-            _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
+            Instantiate(proyectil, transform.position, Quaternion.identity);
+            _targetCollider = null;
+            yield return new WaitForSeconds(data.attackRate);
         }
 
         protected override void Direction()

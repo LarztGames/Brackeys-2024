@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Laboratory : MonoBehaviour
 {
+    public static Laboratory instance { get; set; }
+
     [SerializeField]
     private Image healthImage; // Reemplazamos el Slider por una Image
 
@@ -16,11 +18,17 @@ public class Laboratory : MonoBehaviour
     private float health;
     private float _currentHealth;
 
+    void Awake()
+    {
+        instance = (instance != null) ? instance : this;
+    }
+
     void Start()
     {
         // Al iniciar, el fillAmount debe estar lleno (1) ya que la salud está completa
         healthImage.fillAmount = 1f;
         _currentHealth = health;
+        _graceTime = graceTimer;
     }
 
     void Update()

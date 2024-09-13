@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 14a288d62a1b466458d71ea8867fc778, type: 2}
+  proyectil: {fileID: 3331415659078480776, guid: c27afa70b86768c44abd3b51f89e4890, type: 3}
   oscilationRange: 3
 --- !u!114 &319754071089549745
 MonoBehaviour:

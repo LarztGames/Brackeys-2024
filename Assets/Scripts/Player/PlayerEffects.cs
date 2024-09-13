@@ -12,11 +12,13 @@ namespace Player
         private SpriteRenderer _spriteRenderer;
         private Coroutine _effectCoroutine;
         private Color _baseColor;
+        private Vector3 _baseScale;
 
         void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _baseColor = _spriteRenderer.color;
+            _baseScale = transform.localScale;
         }
 
         // TODO: Add sound
@@ -44,9 +46,9 @@ namespace Player
         {
             _isEffecting = true;
             _spriteRenderer.DOColor(color, duration);
-            gameObject.transform.DOScale(1f, duration);
+            gameObject.transform.DOScale(_baseScale * 1.2f, duration);
             yield return new WaitForSeconds(duration);
-            gameObject.transform.DOScale(0.8f, duration);
+            gameObject.transform.DOScale(_baseScale, duration);
             _spriteRenderer.DOColor(_baseColor, duration);
             _isEffecting = false;
         }

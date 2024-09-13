@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Managers;
 using UnityEngine;
 
@@ -70,7 +71,38 @@ public abstract class Weapon : MonoBehaviour
     public void Remove()
     {
         // TODO: Animation
+        // TODO: Sound
         _placeObj.SetActive(true);
+        switch (_level)
+        {
+            case 2:
+                foreach (var item in weaponData.levelTwoCost)
+                {
+                    StorageManager.instance.AddLoot(item.Loot, item.Amount);
+                }
+                foreach (var item in weaponData.levelOneCost)
+                {
+                    StorageManager.instance.AddLoot(item.Loot, item.Amount);
+                }
+                break;
+            case 3:
+                foreach (var item in weaponData.levelThreeCost)
+                {
+                    StorageManager.instance.AddLoot(item.Loot, item.Amount);
+                }
+                foreach (var item in weaponData.levelOneCost)
+                {
+                    StorageManager.instance.AddLoot(item.Loot, item.Amount);
+                }
+                break;
+            case 1:
+            default:
+                foreach (var item in weaponData.levelOneCost)
+                {
+                    StorageManager.instance.AddLoot(item.Loot, item.Amount);
+                }
+                break;
+        }
         Destroy(gameObject);
     }
 

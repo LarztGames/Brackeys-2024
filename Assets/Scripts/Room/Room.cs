@@ -21,6 +21,13 @@ namespace Dungeon
         private List<Transform> trapSpawnPoints = new List<Transform>();
         private List<Transform> _trapCopySpawnPoints = new List<Transform>();
 
+        [SerializeField]
+        private List<GameObject> doors = new List<GameObject>();
+
+        [SerializeField]
+        private List<Transform> doorSpawnPoints = new List<Transform>();
+        private List<Transform> _doorCopySpawnPoints = new List<Transform>();
+
         private List<GameObject> roomObjects = new List<GameObject>();
 
         void Start()
@@ -32,6 +39,7 @@ namespace Dungeon
         {
             _resourceCopySpawnPoints = CreateListCopy(resourceSpawnPoints);
             _trapCopySpawnPoints = CreateListCopy(trapSpawnPoints);
+            _doorCopySpawnPoints = CreateListCopy(doorSpawnPoints);
             if (roomObjects.Count != 0)
             {
                 foreach (GameObject item in roomObjects)
@@ -44,6 +52,29 @@ namespace Dungeon
             }
             GenerateLoot();
             GenerateTraps();
+            GenerateDoors();
+        }
+
+        private void GenerateDoors()
+        {
+            if (_doorCopySpawnPoints.Count <= 0)
+            {
+                return;
+            }
+            int doorsToSpawn = UnityEngine.Random.Range(0, _doorCopySpawnPoints.Count + 1);
+            for (int i = 0; i < doorsToSpawn; i++)
+            {
+                int randomDoor = UnityEngine.Random.Range(0, doors.Count);
+                int randomPosition = UnityEngine.Random.Range(0, _doorCopySpawnPoints.Count);
+                GameObject door = Instantiate(
+                    doors[randomDoor],
+                    _doorCopySpawnPoints[randomPosition].position,
+                    Quaternion.identity
+                );
+                door.transform.parent = transform;
+                _doorCopySpawnPoints.Remove(_doorCopySpawnPoints[randomPosition]);
+                roomObjects.Add(door);
+            }
         }
 
         private List<Transform> CreateListCopy(List<Transform> original)
@@ -58,6 +89,10 @@ namespace Dungeon
 
         private void GenerateLoot()
         {
+            if (_resourceCopySpawnPoints.Count <= 0)
+            {
+                return;
+            }
             int lootToSpawn = UnityEngine.Random.Range(1, _resourceCopySpawnPoints.Count + 1);
             for (int i = 0; i < lootToSpawn; i++)
             {
@@ -76,6 +111,10 @@ namespace Dungeon
 
         private void GenerateTraps()
         {
+            if (_trapCopySpawnPoints.Count <= 0)
+            {
+                return;
+            }
             int trapToSpawn = UnityEngine.Random.Range(1, _trapCopySpawnPoints.Count + 1);
             for (int i = 0; i < trapToSpawn; i++)
             {

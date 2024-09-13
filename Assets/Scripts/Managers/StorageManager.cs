@@ -47,6 +47,24 @@ public class StorageManager : MonoBehaviour
         }
     }
 
+    public void AddLoot(LootType lootType, float amount)
+    {
+        switch (lootType)
+        {
+            case LootType.Silver:
+                _silverAmount += (int)(amount / 2);
+                break;
+            case LootType.Zafiro:
+                _zafiroAmount += (int)(amount / 2);
+                break;
+            case LootType.Opalo:
+                _opaloAmount += (int)(amount / 2);
+                break;
+        }
+
+        UpdateText();
+    }
+
     public void AddLoot(List<SOCollectableResource> resources)
     {
         foreach (var resource in resources)
