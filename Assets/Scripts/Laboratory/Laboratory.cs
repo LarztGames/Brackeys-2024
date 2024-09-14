@@ -54,8 +54,12 @@ public class Laboratory : MonoBehaviour
 
     public void AddHealth(float value)
     {
-        _currentHealth += value;
-        healthImage.fillAmount = (_currentHealth / health);
+        if (StorageManager.instance.GetLootByType(Collect.LootType.Silver) >= value)
+        {
+            StorageManager.instance.RemoveLoot(Collect.LootType.Silver, value);
+            _currentHealth = Mathf.Min((value + _currentHealth), health);
+            healthImage.fillAmount = (_currentHealth / health);
+        }
     }
 
     public float LabHealth() => _currentHealth;

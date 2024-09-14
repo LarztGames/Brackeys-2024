@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageColor: {r: 1, g: 1, b: 1, a: 0}
   damageFlashTime: 0.1
-  audioClip: {fileID: 8300000, guid: 7b24d049c2295964ab4ed9e64053a9a8, type: 3}
+  audioClip: {fileID: 8300000, guid: 74ecb8125f1fc0a4e93c302a0e94d4ad, type: 3}

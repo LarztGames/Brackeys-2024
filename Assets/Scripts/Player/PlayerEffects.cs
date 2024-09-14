@@ -44,7 +44,7 @@ namespace Player
 
         private IEnumerator CollectEffect(Color color, float duration, AudioClip audioClip)
         {
-            SFXManager.instance.PlaySoundFXClip(audioClip, transform);
+            SFXManager.instance.PlaySoundFXClip(audioClip, transform, 0.25f);
             _isEffecting = true;
             _spriteRenderer.DOColor(color, duration);
             gameObject.transform.DOScale(_baseScale * 1.2f, duration);
