@@ -18,5 +18,5 @@ public class EndlessMode : MonoBehaviour
 
     public void SetEndLessMode() => _endlessMode = true;
 
-    public bool GetEndLessMode() => _endlessMode = true;
+    public bool GetEndLessMode() => _endlessMode;
 }
