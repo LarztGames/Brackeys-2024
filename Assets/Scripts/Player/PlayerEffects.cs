@@ -22,28 +22,29 @@ namespace Player
         }
 
         // TODO: Add sound
-        public void PlayCollectEffect(Color color, float duration)
+        public void PlayCollectEffect(Color color, float duration, AudioClip audioClip)
         {
             if (_isEffecting)
             {
                 StopCoroutine(_effectCoroutine);
                 _isEffecting = false;
             }
-            _effectCoroutine = StartCoroutine(CollectEffect(color, duration));
+            _effectCoroutine = StartCoroutine(CollectEffect(color, duration, audioClip));
         }
 
-        public void PlayDamageEffect(Color color, float duration)
+        public void PlayDamageEffect(Color color, float duration, AudioClip audioClip)
         {
             if (_isEffecting)
             {
                 StopCoroutine(_effectCoroutine);
                 _isEffecting = false;
             }
-            _effectCoroutine = StartCoroutine(DamageEffect(color, duration));
+            _effectCoroutine = StartCoroutine(DamageEffect(color, duration, audioClip));
         }
 
-        private IEnumerator CollectEffect(Color color, float duration)
+        private IEnumerator CollectEffect(Color color, float duration, AudioClip audioClip)
         {
+            SFXManager.instance.PlaySoundFXClip(audioClip, transform);
             _isEffecting = true;
             _spriteRenderer.DOColor(color, duration);
             gameObject.transform.DOScale(_baseScale * 1.2f, duration);
@@ -53,8 +54,9 @@ namespace Player
             _isEffecting = false;
         }
 
-        private IEnumerator DamageEffect(Color color, float duration)
+        private IEnumerator DamageEffect(Color color, float duration, AudioClip audioClip)
         {
+            SFXManager.instance.PlaySoundFXClip(audioClip, transform);
             _isEffecting = true;
             _spriteRenderer.DOColor(color, 0);
             yield return new WaitForSeconds(duration);

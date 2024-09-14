@@ -15,6 +15,7 @@ public class EnemyAlert : MonoBehaviour
 
     private GameObject alertIcon;
     private RectTransform iconRectTransform; // RectTransform del icono para ajustar su tamaño correctamente
+    private bool _isEnemyOnScreen;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class EnemyAlert : MonoBehaviour
         iconRectTransform = alertIcon.GetComponent<RectTransform>();
         alertIcon.SetActive(false); // Se oculta inicialmente
         mainCamera = Camera.main;
-        Debug.Log(alertIcon);
+        // Debug.Log(alertIcon);
     }
 
     void Update()
@@ -42,6 +43,7 @@ public class EnemyAlert : MonoBehaviour
         )
         {
             alertIcon.SetActive(true); // Mostrar el icono si el enemigo está fuera de la pantalla
+            _isEnemyOnScreen = false;
 
             // Clampear la posición del icono dentro de los bordes de la pantalla con un margen para que no se salga
             screenPosition.x = Mathf.Clamp(
@@ -61,6 +63,7 @@ public class EnemyAlert : MonoBehaviour
         else
         {
             alertIcon.SetActive(false); // Ocultar el icono si el enemigo está en la pantalla
+            _isEnemyOnScreen = true;
         }
     }
 }

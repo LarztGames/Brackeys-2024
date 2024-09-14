@@ -16,5 +16,7 @@ MonoBehaviour:
   moveSpeed: 10
   rangeAttack: 2
   attackRate: 5
-  damage: 5
+  damage: 3
   maxTimeAlive: 20
+  dieAudio: {fileID: 8300000, guid: a7f65f4a1720ed84f8b20feb495f41e8, type: 3}
+  damageAudio: {fileID: 8300000, guid: 260610d854d4bdd4fa663192f1be25b6, type: 3}

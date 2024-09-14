@@ -16,5 +16,7 @@ namespace Enemy
         public float attackRate;
         public float damage;
         public float maxTimeAlive;
+        public AudioClip dieAudio;
+        public AudioClip damageAudio;
     }
 }

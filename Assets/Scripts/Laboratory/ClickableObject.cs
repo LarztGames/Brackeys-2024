@@ -16,6 +16,7 @@ public class ClickableObject
 
     // "OnClick" de los botones, se puede asignar desde el Inspector
     public UnityEvent onClick;
+    public AudioClip clickAudio;
 
     private void Start()
     {
@@ -56,6 +57,7 @@ public class ClickableObject
         // Invocar el evento OnClick
         if (onClick != null)
         {
+            SFXManager.instance.PlaySoundFXClip(clickAudio, transform);
             onClick.Invoke();
         }
     }

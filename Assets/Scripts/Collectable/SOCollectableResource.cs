@@ -27,7 +27,7 @@ namespace Collect
             }
             if (_playerPocket.TryAddResource(resource))
             {
-                _playerEffects.PlayCollectEffect(collectColor, collectFlashTime);
+                _playerEffects.PlayCollectEffect(collectColor, collectFlashTime, audioClip);
                 Destroy(resource);
             }
         }

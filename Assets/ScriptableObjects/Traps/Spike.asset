@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ceca98e521c1f94494d008e868e4bbd, type: 3}
   m_Name: Spike
   m_EditorClassIdentifier: 
-  knockForce: 3
   damageColor: {r: 1, g: 1, b: 1, a: 0}
   damageFlashTime: 0.1
+  audioClip: {fileID: 8300000, guid: 7b24d049c2295964ab4ed9e64053a9a8, type: 3}

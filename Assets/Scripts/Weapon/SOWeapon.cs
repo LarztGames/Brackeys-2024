@@ -40,6 +40,11 @@ public class SOWeapon : ScriptableObject
     public Sprite weaponSpriteLevelTwo;
     public Sprite weaponSpriteLevelThree;
     public int weaponLevel;
+    public float attackRange;
+    public LayerMask enemyDetectionLayer;
+
+    [SerializeField]
+    public AudioClip shoot;
 
     [Header("Bullet Attributes")]
     public GameObject bulletPrefab;

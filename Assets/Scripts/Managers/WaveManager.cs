@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     private List<GameObject> waves = new List<GameObject>();
 
     private int _currentWave;
+    private bool _endlessMode;
 
     void Awake()
     {
@@ -18,11 +19,17 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
+        _endlessMode = EndlessMode.instance.GetEndLessMode();
         _currentWave = 0;
+        if (_endlessMode)
+        {
+            Debug.Log("Se ha activado el modo endless");
+        }
     }
 
     public void StartWave()
     {
+        _currentWave = Mathf.Min(_currentWave, waves.Count - 1);
         if (!waves[_currentWave].activeSelf)
         {
             waves[_currentWave].SetActive(true);
@@ -34,14 +41,17 @@ public class WaveManager : MonoBehaviour
         if (_currentWave >= waves.Count)
         {
             // TODO hay que poner si el jugador quiere un modo infinito
-            GameManager.instance.OnWin("WinScene");
             Debug.Log($"Current wave: {_currentWave}. Max waves: {waves.Count}.");
-            Debug.Log("No hay mas rondas, modo loop");
-            _currentWave = waves.Count - 1;
+            if (!_endlessMode)
+            {
+                GameManager.instance.OnWin("WinScene");
+            }
         }
         else
         {
             _currentWave += 1;
         }
     }
+
+    public void SetEndlessMode() => _endlessMode = true;
 }

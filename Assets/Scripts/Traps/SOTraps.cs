@@ -12,6 +12,7 @@ namespace Traps
         [Header("Damage Effects")]
         public Color damageColor;
         public float damageFlashTime;
+        public AudioClip audioClip;
 
         // public AudioClip collectClip;
 

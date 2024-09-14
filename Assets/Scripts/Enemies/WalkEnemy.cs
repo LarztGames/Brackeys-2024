@@ -49,10 +49,13 @@ namespace Enemy
         protected override void Attack()
         {
             // Do dame to laboratory
-            Debug.Log($"{gameObject.name} attack {_targetCollider.name}");
+            // Debug.Log($"{gameObject.name} attack {_targetCollider.name}");
             // Wait for seconds for next attack
             _animator.SetBool("attack", true);
-            _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
+            if (_targetCollider != null)
+            {
+                _targetCollider.GetComponent<Laboratory>().ReceiveDamage(data.damage);
+            }
         }
 
         protected override void Direction()

@@ -2,20 +2,38 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public class AuxiliarControllerClass
+{
+    public SOWeapon weapon;
+
+    public Button button;
+}
+
 public class ShopControllerButtons : MonoBehaviour
 {
+    public static ShopControllerButtons instance { get; set; }
+
     [SerializeField]
-    private SOWeapon weapon;
+    private AuxiliarControllerClass[] buttonWeapon;
+
+    void Awake()
+    {
+        instance = (instance != null) ? instance : this;
+    }
 
     public void CheckDisableButton()
     {
-        if (!TryBuyWeapon(weapon))
+        foreach (var item in buttonWeapon)
         {
-            GetComponent<Button>().interactable = false;
-        }
-        else
-        {
-            GetComponent<Button>().interactable = true;
+            if (!TryBuyWeapon(item.weapon))
+            {
+                item.button.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                item.button.GetComponent<Button>().interactable = true;
+            }
         }
     }
 

@@ -13,6 +13,7 @@ namespace Collect
         [Header("Collection Effects")]
         public Color collectColor;
         public float collectFlashTime;
+        public AudioClip audioClip;
 
         // public AudioClip collectClip;
 

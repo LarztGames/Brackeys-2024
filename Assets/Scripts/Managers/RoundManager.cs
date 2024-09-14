@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,15 @@ namespace Managers
         public static RoundManager instance { get; set; }
 
         [SerializeField]
+        private TMP_Text roundText;
+        private int _currentRound;
+
+        [SerializeField]
         private Image timerImage; // Cambiado a Image en lugar de Slider
         private RoundState state;
+
+        [SerializeField]
+        private AudioClip rain;
 
         [SerializeField]
         private Animator stormIconAnimator;
@@ -51,6 +59,7 @@ namespace Managers
         [SerializeField]
         private float transitionTime;
         private float _currentTransitionTimer;
+        private AudioSource _audioSource;
 
         void Awake()
         {
@@ -60,6 +69,8 @@ namespace Managers
         void Start()
         {
             #region Setup
+            _currentRound = 0;
+            roundText.text = _currentRound.ToString();
             _currentCalmTimer = calmTime;
             _currentStormTimer = stormTime;
             _currentTransitionTimer = 0;
@@ -76,6 +87,16 @@ namespace Managers
         {
             if (state != RoundState.Calm)
             {
+                if (!rainEffect.activeSelf)
+                {
+                    _audioSource = SFXManager.instance.PlaySoundFXClipReturned(
+                        rain,
+                        transform,
+                        0.5f
+                    );
+                    _currentRound += 1;
+                    roundText.text = _currentRound.ToString();
+                }
                 rainEffect.SetActive(true);
                 if (GameManager.instance.OnLab())
                 {
@@ -85,6 +106,7 @@ namespace Managers
             }
             else
             {
+                Destroy(_audioSource);
                 rainEffect.SetActive(false);
                 elevatorButtonSprite.SetActive(true);
                 elevatorAnimator.SetBool("open", true);
@@ -129,6 +151,7 @@ namespace Managers
             else
             {
                 // Transition to Storm
+                WaveManager.instance.StartWave();
                 state = RoundState.Storm;
                 timerImage.fillAmount = 0;
             }
@@ -138,7 +161,6 @@ namespace Managers
         #region Storm
         private void StormState()
         {
-            WaveManager.instance.StartWave();
             stormIconAnimator.SetBool("storm", true);
             if (_currentStormTimer > 0)
             {

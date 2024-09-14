@@ -24,8 +24,12 @@ public abstract class Weapon : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
     protected int _level;
 
+    private bool _enemyOnRange;
+
     public void Placed(GameObject placeObj)
     {
+        ShopControllerButtons.instance.CheckDisableButton();
+        StorageManager.instance.UpdateText();
         GetComponent<Collider2D>().isTrigger = false;
         _placeObj = placeObj;
         _spriteRenderer.color = normalColor;
@@ -36,7 +40,10 @@ public abstract class Weapon : MonoBehaviour
     {
         if (_placed)
         {
-            Shooting();
+            if (_enemyOnRange)
+            {
+                Shooting();
+            }
         }
         else
         {
@@ -61,8 +68,14 @@ public abstract class Weapon : MonoBehaviour
     protected void Shooting()
     {
         _fireRateTime += Time.deltaTime;
-        if (!RoundManager.instance.RemainingEnemies() && _fireRateTime > _fireRate)
+        if (
+            !RoundManager.instance.RemainingEnemies()
+            && _fireRateTime > _fireRate
+            && GameManager.instance.OnLab()
+            && _enemyOnRange
+        )
         {
+            SFXManager.instance.PlaySoundFXClip(weaponData.shoot, transform, 0.25f);
             _fireRateTime = 0;
             Shoot();
         }
@@ -108,4 +121,6 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void UpdateLevel(int level);
     protected abstract void Shoot();
+
+    public void SetEnemyOnRange(bool value) => _enemyOnRange = value;
 }

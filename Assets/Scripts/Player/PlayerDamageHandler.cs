@@ -39,14 +39,18 @@ namespace Player
                 return;
             }
             _damageGraceTimer = 0;
-            _playerEffects.PlayDamageEffect(traps.damageColor, traps.damageFlashTime);
+            _playerEffects.PlayDamageEffect(
+                traps.damageColor,
+                traps.damageFlashTime,
+                traps.audioClip
+            );
             StartCoroutine(LoseVision());
         }
 
         private IEnumerator LoseVision()
         {
             visionArea.transform.DOScale(_visionAreaScale / 2, 0.5f);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
             visionArea.transform.DOScale(_visionAreaScale, 0.5f);
         }
     }

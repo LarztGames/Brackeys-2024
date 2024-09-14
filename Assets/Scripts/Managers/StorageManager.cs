@@ -23,6 +23,9 @@ public class StorageManager : MonoBehaviour
     [SerializeField]
     private bool debug;
 
+    [SerializeField]
+    private AudioClip audioClip;
+
     void Awake()
     {
         instance = (instance != null) ? instance : this;
@@ -47,6 +50,7 @@ public class StorageManager : MonoBehaviour
         }
     }
 
+    // add loot on destroy
     public void AddLoot(LootType lootType, float amount)
     {
         switch (lootType)
@@ -102,7 +106,7 @@ public class StorageManager : MonoBehaviour
         UpdateText();
     }
 
-    private void UpdateText()
+    public void UpdateText()
     {
         silverText.text = ((int)_silverAmount).ToString("D3");
         zafiroText.text = ((int)_zafiroAmount).ToString("D3");

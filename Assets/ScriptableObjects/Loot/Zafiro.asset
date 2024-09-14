@@ -16,6 +16,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   collectColor: {r: 0, g: 0.59607846, b: 0.86274517, a: 1}
   collectFlashTime: 0.5
+  audioClip: {fileID: 8300000, guid: 8619c1a47ba283847b864435092ae128, type: 3}
   weight: 5
   amount: 2
   lootType: 1

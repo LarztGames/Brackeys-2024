@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemy;
@@ -8,78 +7,90 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> enemies = new List<GameObject>();
+    private GameObject walkEnemy;
 
-    // [SerializeField]
-    // private float enemiesPerRound;
+    [SerializeField]
+    private GameObject flyEnemy;
 
     [SerializeField]
     private float timeToSpawnEnemies;
 
     [SerializeField]
-    private float amountEnmiesToSpawn;
+    private int amountWalkEnemiesToSpawn;
 
     [SerializeField]
-    private Transform[] enemyFlySpawnPoint = new Transform[2];
+    private int amountFlyEnemiesToSpawn;
 
     [SerializeField]
-    private Transform[] enemyWalkSpawnPoint = new Transform[2];
+    private Transform[] enemyFlySpawnPoints = new Transform[2];
+
+    [SerializeField]
+    private Transform[] enemyWalkSpawnPoints = new Transform[2];
+
+    private int _walkEnemiesToSpawn;
+    private int _flyEnemiesToSpawn;
+    private float _spawnTimer;
+
+    [SerializeField]
+    private float spawnDelay = 0.35f; // Delay between enemy spawns
 
     void Start()
     {
-        StartCoroutine(StartWave());
+        _walkEnemiesToSpawn = amountWalkEnemiesToSpawn;
+        _flyEnemiesToSpawn = amountFlyEnemiesToSpawn;
+        _spawnTimer = 0;
+    }
+
+    private void OnEnable()
+    {
+        _walkEnemiesToSpawn = amountWalkEnemiesToSpawn;
+        _flyEnemiesToSpawn = amountFlyEnemiesToSpawn;
+        _spawnTimer = 0;
+    }
+
+    void Update()
+    {
+        if (_walkEnemiesToSpawn > 0 || _flyEnemiesToSpawn > 0)
+        {
+            _spawnTimer += Time.deltaTime;
+            if (_spawnTimer >= timeToSpawnEnemies)
+            {
+                StartCoroutine(StartWave());
+                _spawnTimer = 0;
+            }
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator StartWave()
     {
-        Debug.Log("Spawning");
-        float currentAmountEnemiesToSpawn = 0;
-
-        if (enemies.Count == 0)
+        // Spawn fly enemies
+        int flyEnemiesToSpawn = Mathf.Min(
+            Random.Range(1, _flyEnemiesToSpawn + 1),
+            _flyEnemiesToSpawn
+        );
+        _flyEnemiesToSpawn -= flyEnemiesToSpawn;
+        for (int i = 0; i < flyEnemiesToSpawn; i++)
         {
-            Debug.LogError("La lista de enemigos está vacía. No se pueden spawnear enemigos.");
-            yield break; // Salimos de la corrutina si no hay enemigos
+            int randomPos = Random.Range(0, enemyFlySpawnPoints.Length);
+            Instantiate(flyEnemy, enemyFlySpawnPoints[randomPos].position, Quaternion.identity);
+            yield return new WaitForSeconds(spawnDelay); // Wait for a short time before spawning the next enemy
         }
 
-        while (RoundManager.instance.GetRoundState() == RoundState.Storm)
+        // Spawn walk enemies
+        int walkEnemiesToSpawn = Mathf.Min(
+            Random.Range(1, _walkEnemiesToSpawn + 1),
+            _walkEnemiesToSpawn
+        );
+        _walkEnemiesToSpawn -= walkEnemiesToSpawn;
+        for (int i = 0; i < walkEnemiesToSpawn; i++)
         {
-            for (int i = 0; i < amountEnmiesToSpawn; i++)
-            {
-                int randomIndex = UnityEngine.Random.Range(0, enemies.Count);
-
-                if (enemies[randomIndex].GetComponent<FlyEnemy>())
-                {
-                    int randomFlyPosition = UnityEngine.Random.Range(0, enemyFlySpawnPoint.Length);
-
-                    Instantiate(
-                        enemies[randomIndex],
-                        enemyFlySpawnPoint[randomFlyPosition].position,
-                        Quaternion.identity
-                    );
-                }
-                else
-                {
-                    int randomWalkPosition = UnityEngine.Random.Range(
-                        0,
-                        enemyWalkSpawnPoint.Length
-                    );
-
-                    Instantiate(
-                        enemies[randomIndex],
-                        enemyWalkSpawnPoint[randomWalkPosition].position,
-                        Quaternion.identity
-                    );
-                }
-            }
-
-            currentAmountEnemiesToSpawn += amountEnmiesToSpawn;
-
-            // Esperamos antes de la próxima tanda de enemigos
-            // Debug.Log($"Esperando {timeToSpawnEnemies} segundos antes de la próxima tanda...");
-            yield return new WaitForSeconds(timeToSpawnEnemies);
+            int randomPos = Random.Range(0, enemyWalkSpawnPoints.Length);
+            Instantiate(walkEnemy, enemyWalkSpawnPoints[randomPos].position, Quaternion.identity);
+            yield return new WaitForSeconds(spawnDelay); // Wait for a short time before spawning the next enemy
         }
-
-        Debug.Log("Finalizó la oleada de enemigos. Desactivando el objeto.");
-        gameObject.SetActive(false); // Opcional: desactiva el spawner
     }
 }

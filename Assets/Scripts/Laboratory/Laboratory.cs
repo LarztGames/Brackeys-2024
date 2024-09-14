@@ -48,12 +48,14 @@ public class Laboratory : MonoBehaviour
             _currentHealth -= damage;
 
             // Normalizar el valor de salud para que fillAmount esté entre 0 y 1
-            healthImage.fillAmount = Mathf.Lerp(
-                healthImage.fillAmount,
-                _currentHealth / health,
-                5 * Time.deltaTime
-            );
+            healthImage.fillAmount = (_currentHealth / health);
         }
+    }
+
+    public void AddHealth(float value)
+    {
+        _currentHealth += value;
+        healthImage.fillAmount = (_currentHealth / health);
     }
 
     public float LabHealth() => _currentHealth;

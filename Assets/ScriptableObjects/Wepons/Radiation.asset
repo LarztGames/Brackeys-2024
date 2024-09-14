@@ -18,13 +18,18 @@ MonoBehaviour:
   weaponSpriteLevelTwo: {fileID: 416087841, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
   weaponSpriteLevelThree: {fileID: 1164684413, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
   weaponLevel: 2
+  attackRange: 12.5
+  enemyDetectionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  shoot: {fileID: 8300000, guid: 2e1df1b04d996f14a93e786f9ac1b38c, type: 3}
   bulletPrefab: {fileID: 5001340492442454207, guid: 63eb37183d236bc4ba59a1ffcb0ccc2f, type: 3}
   fireRate: 10
-  bulletDamage: 10
-  bulletSpeed: 5
+  bulletDamage: 5
+  bulletSpeed: 4
   bulletLifeTime: 5
   levelTwoMultiplier: 1
-  levelThreeMultiplier: 2
+  levelThreeMultiplier: 1.5
   levelOneCost:
   - loot: 0
     amount: 2

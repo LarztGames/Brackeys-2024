@@ -77,7 +77,7 @@ namespace Player
             {
                 if (_room != room)
                 {
-                    Debug.Log($"El jugador esta en la room: {room.name}");
+                    // Debug.Log($"El jugador esta en la room: {room.name}");
                     _room = room;
                     cameraController.SetRoomPosition(_room.transform);
                     _onRoomTransition = true;

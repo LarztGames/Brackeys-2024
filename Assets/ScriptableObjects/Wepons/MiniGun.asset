@@ -18,6 +18,11 @@ MonoBehaviour:
   weaponSpriteLevelTwo: {fileID: -248717585, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
   weaponSpriteLevelThree: {fileID: -1822224724, guid: d66f8136dc17c5545ab95ed093d93845, type: 3}
   weaponLevel: 0
+  attackRange: 12.5
+  enemyDetectionLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  shoot: {fileID: 8300000, guid: 0741ae1de7008834db90ff4618725cdb, type: 3}
   bulletPrefab: {fileID: 5908059662911201270, guid: 2a550598905a30940b6ece9e68cc511b, type: 3}
   fireRate: 0.5
   bulletDamage: 2

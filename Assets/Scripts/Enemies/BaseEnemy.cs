@@ -47,6 +47,7 @@ namespace Enemy
         {
             _animator.SetBool("damage", true);
             _currentHealth -= damageReceive;
+            SFXManager.instance.PlaySoundFXClip(data.damageAudio, transform, 0.1f, 0.2f);
             yield return new WaitForSeconds(_receivingDamageTimer);
             _animator.SetBool("damage", false);
         }
@@ -56,6 +57,7 @@ namespace Enemy
             if (_currentHealth <= 0)
             {
                 // TODO: Animation
+                SFXManager.instance.PlaySoundFXClip(data.dieAudio, transform, 0.25f, 0.5f);
                 Destroy(gameObject);
             }
         }
